@@ -29,5 +29,10 @@
         "noUnusedVariables": "error"
       }
     }
+  },
+  "vcs": {
+    "enabled": true,
+    "useIgnoreFile": true,
+    "clientKind": "git"
   }
 }

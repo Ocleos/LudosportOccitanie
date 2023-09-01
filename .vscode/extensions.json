@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-french",
+    "streetsidesoftware.code-spell-checker-french-reforme",
+    "dsznajder.es7-react-js-snippets",
+    "antfu.file-nesting",
+    "pkief.material-icon-theme",
+    "yoavbls.pretty-ts-errors",
+    "rome.rome",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
