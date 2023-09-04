@@ -5,3 +5,4 @@
 *.zip binary
 *.otf binary
 *.ttf binary
+*.gz binary

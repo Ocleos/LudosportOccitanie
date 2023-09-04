@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "NeoSansProBold";
+  src: url("/fonts/NeoSansProBold.ttf");
+}
+
+@font-face {
+  font-family: "NeoSansProRegular";
+  src: url("/fonts/NeoSansProRegular.ttf");
+}
