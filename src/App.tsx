@@ -1,3 +1,4 @@
+import Contacts from './components/contacts.component';
 import Events from './components/events/events.component';
 import Home from './components/home.component';
 import Places from './components/places.component';
@@ -21,6 +22,7 @@ function App() {
         <Places />
         <Events />
         <SocialsNetworks />
+        <Contacts />
       </div>
     </main>
   );

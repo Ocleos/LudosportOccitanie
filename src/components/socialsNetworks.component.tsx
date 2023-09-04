@@ -1,4 +1,4 @@
-import { FaEnvelope, FaFacebookF, FaInstagram } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
 
 function SocialsNetworks() {
   return (
@@ -16,10 +16,6 @@ function SocialsNetworks() {
 
         <a href='https://www.instagram.com/ludosport.occitanie/' target='_blank' rel='noreferrer'>
           <FaInstagram className='w-12 h-12' />
-        </a>
-
-        <a href='mailto:montpellier@ludosport.net' target='_blank' rel='noreferrer'>
-          <FaEnvelope className='w-12 h-12' />
         </a>
       </div>
     </div>
