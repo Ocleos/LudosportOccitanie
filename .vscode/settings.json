@@ -1,19 +1,20 @@
 {
-  "cSpell.words": ["Ludosport", "Occitanie", "Spada"],
   "editor.linkedEditing": true,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
+    "quickfix.biome": true,
     "source.organizeImports": true,
-    "source.organizeImports.rome": true
+    "source.organizeImports.biome": true
   },
-  "editor.defaultFormatter": "rome.rome",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 120,
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "cSpell.words": ["Ludosport", "Occitanie", "Spada"],
   "cSpell.ignoreRegExpList": ["/from\\\\s+(['\\\"]).*\\\\1/"],
-  "cSpell.ignoreWords": ["commitlint", "dayjs", "tailwindcss"]
+  "cSpell.ignoreWords": ["biomejs", "commitlint", "dayjs", "tailwindcss"]
 }

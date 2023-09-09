@@ -7,7 +7,7 @@
     "antfu.file-nesting",
     "pkief.material-icon-theme",
     "yoavbls.pretty-ts-errors",
-    "rome.rome",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "biomejs.biome"
   ]
 }
