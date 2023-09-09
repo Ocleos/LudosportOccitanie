@@ -2353,6 +2353,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.276.0":
+  version: 0.276.0
+  resolution: "lucide-react@npm:0.276.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: bf57d3345b778cc13c393bbba9ce308f0e96c9aab247e3604610138860d5579c6a2a93250e1768795a5bb4d6419b19f065adbe1ddd6b0da180101bd73194d7b4
+  languageName: node
+  linkType: hard
+
 "ludosport_occitanie@workspace:.":
   version: 0.0.0-use.local
   resolution: "ludosport_occitanie@workspace:."
@@ -2365,14 +2374,14 @@ __metadata:
     "@vitejs/plugin-react-swc": ^3.3.2
     autoprefixer: ^10.4.15
     husky: ^8.0.3
+    lucide-react: ^0.276.0
     postcss: ^8.4.29
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-icons: ^4.10.1
     tailwindcss: ^3.3.3
     typescript: ^5.2.2
     vite: ^4.4.9
-    vite-tsconfig-paths: ^4.2.0
+    vite-tsconfig-paths: ^4.2.1
   languageName: unknown
   linkType: soft
 
@@ -3044,15 +3053,6 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
-  languageName: node
-  linkType: hard
-
-"react-icons@npm:^4.10.1":
-  version: 4.10.1
-  resolution: "react-icons@npm:4.10.1"
-  peerDependencies:
-    react: "*"
-  checksum: b6c8d4fe482b112e1041515d93ef7670a0af128855c926052a076b64d0b991cdd4391394b26467100f8da3859db1ebd8f9c6b7614fa5969fde83de45c71031a3
   languageName: node
   linkType: hard
 
@@ -3789,9 +3789,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-tsconfig-paths@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "vite-tsconfig-paths@npm:4.2.0"
+"vite-tsconfig-paths@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "vite-tsconfig-paths@npm:4.2.1"
   dependencies:
     debug: ^4.1.1
     globrex: ^0.1.2
@@ -3801,7 +3801,7 @@ __metadata:
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 73a8467de72d7ac502328454fd00c19571cd4bad2dd5982643b24718bb95e449a3f4153cfc2d58a358bfc8f37e592fb442fc10884b59ae82138c1329160cd952
+  checksum: 8cfbd314eb82a9db97e193aef826e72a112ca8b98e68ef0f9cd8f8538fd5163afe67652507bae41d4aab967ab9a8b24dcf95bd0a8900d388cd6c500c5a82d3b1
   languageName: node
   linkType: hard
 

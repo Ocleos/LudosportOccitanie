@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
+import { Facebook, Instagram } from 'lucide-react';
 
 function SocialsNetworks() {
   return (
@@ -11,11 +11,11 @@ function SocialsNetworks() {
 
       <div className='flex flex-row gap-8 m-auto w-full p-4 justify-center'>
         <a href='https://www.facebook.com/ludosportoccitanie/' target='_blank' rel='noreferrer'>
-          <FaFacebookF className='w-12 h-12' />
+          <Facebook className='w-12 h-12' />
         </a>
 
         <a href='https://www.instagram.com/ludosport.occitanie/' target='_blank' rel='noreferrer'>
-          <FaInstagram className='w-12 h-12' />
+          <Instagram className='w-12 h-12' />
         </a>
       </div>
     </div>
