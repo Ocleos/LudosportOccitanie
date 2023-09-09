@@ -10,7 +10,11 @@ export default {
     },
     extend: {
       colors: {
-        primary: '#ee7503',
+        primary: {
+          light: '#ff940d',
+          DEFAULT: '#ee7503',
+          dark: '#c95a05',
+        },
       },
       fontFamily: {
         'neo-bold': ['NeoSansProBold', ...defaultTheme.fontFamily.sans],

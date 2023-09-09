@@ -3,6 +3,7 @@ import Events from './components/events/events.component';
 import Home from './components/home.component';
 import Places from './components/places.component';
 import SocialsNetworks from './components/socialsNetworks.component';
+import TrialCourses from './components/trialCourses.component';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </div>
 
         <Places />
+        <TrialCourses />
         <Events />
         <SocialsNetworks />
         <Contacts />
