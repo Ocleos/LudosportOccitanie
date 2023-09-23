@@ -40,16 +40,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/biome@npm:1.1.2"
+"@biomejs/biome@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/biome@npm:1.2.2"
   dependencies:
-    "@biomejs/cli-darwin-arm64": 1.1.2
-    "@biomejs/cli-darwin-x64": 1.1.2
-    "@biomejs/cli-linux-arm64": 1.1.2
-    "@biomejs/cli-linux-x64": 1.1.2
-    "@biomejs/cli-win32-arm64": 1.1.2
-    "@biomejs/cli-win32-x64": 1.1.2
+    "@biomejs/cli-darwin-arm64": 1.2.2
+    "@biomejs/cli-darwin-x64": 1.2.2
+    "@biomejs/cli-linux-arm64": 1.2.2
+    "@biomejs/cli-linux-x64": 1.2.2
+    "@biomejs/cli-win32-arm64": 1.2.2
+    "@biomejs/cli-win32-x64": 1.2.2
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -65,48 +65,48 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: d9c38a3f4b2962330e6f9bb46ea161480947e6aa8545e3bdde157182b4b7901f4600209e69a58489ae76eb279a4152a78f4507d6045a0f9ec7acb828c875175c
+  checksum: 36dfcc756c53e22a5f6b5819ebb261b02acaa4df2832ef00e231bf73d4707121d0acdefa81f12523beb09a7b363676ca8fe719873932794d2e92130c3a41908c
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/cli-darwin-arm64@npm:1.1.2"
+"@biomejs/cli-darwin-arm64@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/cli-darwin-arm64@npm:1.2.2"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/cli-darwin-x64@npm:1.1.2"
+"@biomejs/cli-darwin-x64@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/cli-darwin-x64@npm:1.2.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/cli-linux-arm64@npm:1.1.2"
+"@biomejs/cli-linux-arm64@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/cli-linux-arm64@npm:1.2.2"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/cli-linux-x64@npm:1.1.2"
+"@biomejs/cli-linux-x64@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/cli-linux-x64@npm:1.2.2"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/cli-win32-arm64@npm:1.1.2"
+"@biomejs/cli-win32-arm64@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/cli-win32-arm64@npm:1.2.2"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "@biomejs/cli-win32-x64@npm:1.1.2"
+"@biomejs/cli-win32-x64@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@biomejs/cli-win32-x64@npm:1.2.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -774,14 +774,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.21":
-  version: 18.2.21
-  resolution: "@types/react@npm:18.2.21"
+"@types/react@npm:*, @types/react@npm:^18.2.22":
+  version: 18.2.22
+  resolution: "@types/react@npm:18.2.22"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: ffed203bfe7aad772b8286f7953305c9181ac3a8f27d3f5400fbbc2a8e27ca8e5bbff818ee014f39ca0d19d2b3bb154e5bdbec7e232c6f80b59069375aa78349
+  checksum: 44289523dabaadcd3fd85689abb98f9ebcc8492d7e978348d1c986138acef4801030b279e89a19e38a6319e294bcea77559e37e0c803e4bacf2b8ae3a56ba587
   languageName: node
   linkType: hard
 
@@ -986,13 +986,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.15":
-  version: 10.4.15
-  resolution: "autoprefixer@npm:10.4.15"
+"autoprefixer@npm:^10.4.16":
+  version: 10.4.16
+  resolution: "autoprefixer@npm:10.4.16"
   dependencies:
     browserslist: ^4.21.10
-    caniuse-lite: ^1.0.30001520
-    fraction.js: ^4.2.0
+    caniuse-lite: ^1.0.30001538
+    fraction.js: ^4.3.6
     normalize-range: ^0.1.2
     picocolors: ^1.0.0
     postcss-value-parser: ^4.2.0
@@ -1000,7 +1000,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: d490b14fb098c043e109fc13cd23628f146af99a493d35b9df3a26f8ec0b4dd8937c5601cdbaeb465b98ea31d3ea05aa7184711d4d93dfb52358d073dcb67032
+  checksum: 45fad7086495048dacb14bb7b00313e70e135b5d8e8751dcc60548889400763705ab16fc2d99ea628b44c3472698fb0e39598f595ba28409c965ab159035afde
   languageName: node
   linkType: hard
 
@@ -1112,10 +1112,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001517, caniuse-lite@npm:^1.0.30001520":
-  version: 1.0.30001525
-  resolution: "caniuse-lite@npm:1.0.30001525"
-  checksum: a0d190c185b8e1220dbc72e42f310633059aa175ca3396eb781b249ac3da6c62b30cb8efc5fa24d632cb938f58d90b0c7772d1c9942b6643cf418c27c2cb8632
+"caniuse-lite@npm:^1.0.30001517, caniuse-lite@npm:^1.0.30001538":
+  version: 1.0.30001538
+  resolution: "caniuse-lite@npm:1.0.30001538"
+  checksum: 94c5d55757a339c7cc175f08a024671e2b4e7c04f130b1015793303d637061347efb6ad84447c3b8137333e742d150b8ad9672716bbf2482646c2e63a56f6c55
   languageName: node
   linkType: hard
 
@@ -1662,7 +1662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fraction.js@npm:^4.2.0":
+"fraction.js@npm:^4.3.6":
   version: 4.3.6
   resolution: "fraction.js@npm:4.3.6"
   checksum: e96ae77e64ebfd442d3a5a01a3f0637b0663fc2440bcf2841b3ad9341ba24c81fb2e3e7142e43ef7d088558c6b3f8609df135b201adc7a1c674aea6a71384162
@@ -2353,12 +2353,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.276.0":
-  version: 0.276.0
-  resolution: "lucide-react@npm:0.276.0"
+"lucide-react@npm:^0.279.0":
+  version: 0.279.0
+  resolution: "lucide-react@npm:0.279.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: bf57d3345b778cc13c393bbba9ce308f0e96c9aab247e3604610138860d5579c6a2a93250e1768795a5bb4d6419b19f065adbe1ddd6b0da180101bd73194d7b4
+  checksum: d9b9200af359806fcea878221ab054615fc7465d49db45cb5fdd2e9b1c6d59a5dc7431e633095f8db4677918518b54d5fe3e9b4292f96bc26d5268b4b5b6b1be
   languageName: node
   linkType: hard
 
@@ -2366,16 +2366,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ludosport_occitanie@workspace:."
   dependencies:
-    "@biomejs/biome": ^1.1.2
+    "@biomejs/biome": ^1.2.2
     "@commitlint/cli": ^17.7.1
     "@commitlint/config-conventional": ^17.7.0
-    "@types/react": ^18.2.21
+    "@types/react": ^18.2.22
     "@types/react-dom": ^18.2.7
     "@vitejs/plugin-react-swc": ^3.3.2
-    autoprefixer: ^10.4.15
+    autoprefixer: ^10.4.16
     husky: ^8.0.3
-    lucide-react: ^0.276.0
-    postcss: ^8.4.29
+    lucide-react: ^0.279.0
+    postcss: ^8.4.30
     react: ^18.2.0
     react-dom: ^18.2.0
     tailwindcss: ^3.3.3
@@ -3002,14 +3002,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.23, postcss@npm:^8.4.27, postcss@npm:^8.4.29":
-  version: 8.4.29
-  resolution: "postcss@npm:8.4.29"
+"postcss@npm:^8.4.23, postcss@npm:^8.4.27, postcss@npm:^8.4.30":
+  version: 8.4.30
+  resolution: "postcss@npm:8.4.30"
   dependencies:
     nanoid: ^3.3.6
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: dd6daa25e781db9ae5b651d9b7bfde0ec6e60e86a37da69a18eb4773d5ddd51e28fc4ff054fbdc04636a31462e6bf09a1e50986f69ac52b10d46b7457cd36d12
+  checksum: 6c810c10c9bd3e03ca016e0b6b6756261e640aba1a9a7b1200b55502bc34b9165e38f590aef3493afc2f30ab55cdfcd43fd0f8408d69a77318ddbcf2a8ad164b
   languageName: node
   linkType: hard
 

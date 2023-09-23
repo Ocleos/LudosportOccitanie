@@ -9,10 +9,10 @@ function Events() {
         Vous souhaitez nous rencontrer et discuter avec nous, n'hésitez pas à venir aux prochains événements :
       </p>
 
-      <EventCard startDate='10/09/2023' description='Antigone des Associations à Montpellier' />
-      <EventCard fromDate='11/09/2023' description='Reprise des cours sur Nîmes' />
-      <EventCard fromDate='12/09/2023' description='Reprise des cours sur Montpellier' />
-      <EventCard startDate='16/09/2023' endDate='17/09/2023' description='VitalSport Decathlon Nîmes' />
+      <EventCard startDate='01/10/2023' description='Stage découverte - Lunel (Salle Marcou)' />
+      <EventCard startDate='15/10/2023' description='Stage Forme 3 Baton - Montpellier' />
+      <EventCard startDate='28/10/2023' description='Stage Forme 1 Spécialisée - Lunel (Halle Intercommunale)' />
+      <EventCard startDate='29/10/2023' description='Halloween Games - Lunel (Halle Intercommunale)' />
       <EventCard startDate='02/12/2023' endDate='03/12/2023' description="Champions' Arena - Paris 2023" />
     </div>
   );
