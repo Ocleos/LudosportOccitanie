@@ -1,14 +1,15 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.6.1/schema.json",
   "files": {
     "ignore": ["**/node_modules/*.*"]
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": true,
-    "indentSize": 2,
     "indentStyle": "space",
-    "lineWidth": 120
+    "lineWidth": 120,
+    "indentWidth": 2,
+    "lineEnding": "lf"
   },
   "javascript": {
     "formatter": {
@@ -17,12 +18,19 @@
       "quoteProperties": "asNeeded",
       "quoteStyle": "single",
       "semicolons": "always",
-      "trailingComma": "all"
+      "trailingComma": "all",
+      "bracketSameLine": true,
+      "bracketSpacing": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineEnding": "lf",
+      "lineWidth": 120
     }
   },
   "json": {
     "parser": {
-      "allowComments": true
+      "allowComments": true,
+      "allowTrailingCommas": true
     }
   },
   "linter": {

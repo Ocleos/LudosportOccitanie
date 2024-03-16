@@ -11,8 +11,7 @@ function TrialCourses() {
         <a
           href='https://docs.google.com/forms/d/e/1FAIpQLScpqAm2JQG9D3aI4ynLw-SKDNSAPz6cxy97FU-kzb6e2rI7YA/viewform?usp=pp_url'
           target='_blank'
-          rel='noreferrer'
-        >
+          rel='noreferrer'>
           <button className='bg-primary hover:bg-primary-dark font-bold py-2 px-4 rounded' type='button'>
             Participer à un cours d'essai
           </button>
