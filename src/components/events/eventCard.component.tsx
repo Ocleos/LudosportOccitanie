@@ -23,8 +23,8 @@ const EventCard: React.FC<IEventCardProps> = ({ startDate, endDate, fromDate, de
   }, [startDate, endDate, fromDate]);
 
   return (
-    <div className='border-2 rounded-lg p-4 mb-4 max-w-xl mx-auto flex flex-row gap-4'>
-      <Calendar className='flex-none w-8 h-8 m-auto' />
+    <div className='mx-auto mb-4 flex max-w-xl flex-row gap-4 rounded-lg border-2 p-4'>
+      <Calendar className='m-auto h-8 w-8 flex-none' />
       <div className='flex-1 flex-col'>
         <p className='font-bold text-md'>{getFullDate}</p>
         <p>{description}</p>

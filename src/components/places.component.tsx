@@ -5,12 +5,12 @@ import SpadaNimes from '../assets/SpadaNimes.svg';
 function Places() {
   return (
     <div>
-      <span className='text-primary text-center font-bold block uppercase text-xl mb-4'>
+      <span className='mb-4 block text-center font-bold text-primary text-xl uppercase'>
         Écoles / Planning Entrainements
       </span>
 
-      <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4'>
-        <div className='border-2 p-4 text-center rounded-lg flex flex-col gap-4'>
+      <div className='grid w-full grid-cols-1 gap-4 sm:grid-cols-3'>
+        <div className='flex flex-col gap-4 rounded-lg border-2 p-4 text-center'>
           <p className='font-bold text-lg'>Montpellier</p>
           <p>
             Training Go Montpellier Près d'arènes
@@ -20,7 +20,7 @@ function Places() {
             34070 Montpellier
           </p>
 
-          <img src={SpadaMontpellier} alt='Spada Montpellier' className='h-48 mx-auto' />
+          <img src={SpadaMontpellier} alt='Spada Montpellier' className='mx-auto h-48' />
 
           <ul>
             <li className='mb-2'>
@@ -42,7 +42,7 @@ function Places() {
           </ul>
         </div>
 
-        <div className='border-2 p-4 text-center rounded-lg flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 rounded-lg border-2 p-4 text-center'>
           <p className='font-bold text-lg'>Nîmes</p>
           <p>
             Planète Fitness - Nîmes Carré Sud
@@ -52,7 +52,7 @@ function Places() {
             30900 Nîmes
           </p>
 
-          <img src={SpadaNimes} alt='Spada Nîmes' className='h-48 mx-auto' />
+          <img src={SpadaNimes} alt='Spada Nîmes' className='mx-auto h-48' />
 
           <ul>
             <li className='mb-2'>
@@ -66,7 +66,7 @@ function Places() {
           </ul>
         </div>
 
-        <div className='border-2 p-4 text-center rounded-lg flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 rounded-lg border-2 p-4 text-center'>
           <p className='font-bold text-lg'>Lunel</p>
           <p>
             Halle de Sport Alain Le Hetet
@@ -76,7 +76,7 @@ function Places() {
             34400 Lunel
           </p>
 
-          <img src={SpadaLunel} alt='Spada Lunel' className='h-48 mx-auto' />
+          <img src={SpadaLunel} alt='Spada Lunel' className='mx-auto h-48' />
 
           <ul>
             <li className='mb-2'>

@@ -7,13 +7,13 @@ import TrialCourses from './components/trialCourses.component';
 
 function App() {
   return (
-    <main className="w-full h-full flex flex-col bg-slate-900 bg-[url('./assets/bgWallpaper.png')] bg-fixed bg-cover bg-center">
-      <div className='max-w-5xl flex flex-col gap-8 text-white m-4 xl:mx-auto font-neo'>
+    <main className='flex h-full w-full flex-col bg-[url("./assets/bgWallpaper.png")] bg-center bg-cover bg-slate-900 bg-fixed'>
+      <div className='m-4 flex max-w-5xl flex-col gap-8 font-neo text-white xl:mx-auto'>
         <Home />
 
         <div>
           <iframe
-            className='w-full aspect-video'
+            className='aspect-video w-full'
             src='https://www.youtube.com/embed/1X1vQloCddU'
             title='Ludosport Occitanie'
             allowFullScreen
