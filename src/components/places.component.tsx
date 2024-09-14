@@ -24,7 +24,9 @@ function Places() {
           <ul>
             <li className='mb-2'>
               Forme 1 : <br />
-              Mercredi 20h30 - 22h30
+              Lundi 20h30 - 22h30
+              <br />
+              Mercredi 20h45 - 22h45
             </li>
             <li className='mb-2'>
               Forme 2 : <br />
