@@ -1,31 +1,41 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
+      }
+    }
+  },
   "files": {
     "ignoreUnknown": true,
-    "ignore": ["**/node_modules/*.*"]
+    "includes": ["**", "!**/node_modules/**/*.*"]
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": true,
     "indentStyle": "space",
-    "lineWidth": 120,
     "indentWidth": 2,
-    "lineEnding": "lf"
+    "lineEnding": "lf",
+    "lineWidth": 120
   },
   "javascript": {
     "formatter": {
       "arrowParentheses": "always",
-      "jsxQuoteStyle": "single",
-      "quoteProperties": "asNeeded",
-      "quoteStyle": "single",
-      "semicolons": "always",
-      "trailingCommas": "all",
       "bracketSameLine": true,
       "bracketSpacing": true,
       "indentStyle": "space",
       "indentWidth": 2,
+      "jsxQuoteStyle": "single",
       "lineEnding": "lf",
-      "lineWidth": 120
+      "lineWidth": 120,
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
     }
   },
   "json": {
@@ -51,9 +61,6 @@
       },
       "recommended": true
     }
-  },
-  "organizeImports": {
-    "enabled": true
   },
   "vcs": {
     "clientKind": "git",

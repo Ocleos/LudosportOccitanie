@@ -1,7 +1,7 @@
 import SpadaMontpellier from '../assets/SpadaMontpellier.svg';
 import SpadaNimes from '../assets/SpadaNimes.svg';
 
-function Places() {
+const Places = () => {
   return (
     <div>
       <span className='mb-4 block text-center font-bold text-primary text-xl uppercase'>
@@ -19,29 +19,23 @@ function Places() {
             34070 Montpellier
           </p>
 
-          <img src={SpadaMontpellier} alt='Spada Montpellier' className='mx-auto h-48' />
+          <img alt='Spada Montpellier' className='mx-auto h-48' src={SpadaMontpellier} />
 
           <ul>
             <li className='mb-2'>
               Forme 1 : <br />
-              Lundi 20h30 - 22h30
-              <br />
-              Mercredi 20h45 - 22h45
-            </li>
-            <li className='mb-2'>
-              Forme 2 : <br />
-              Mercredi 20h30 - 22h30
-            </li>
-            <li className='mb-2'>
-              Forme 3 : <br />
               Mardi 20h30 - 22h30
             </li>
             <li className='mb-2'>
-              Forme 5 : <br />
+              Forme 2 : <br />
+              Lundi 20h30 - 22h30
+            </li>
+            <li className='mb-2'>
+              Forme 4 : <br />
               Jeudi 20h30 - 22h30
             </li>
             <li className='mb-2'>
-              Masterclass : <br />
+              Forme 1 Expert : <br />
               Vendredi 20h30 - 22h30
             </li>
           </ul>
@@ -57,7 +51,7 @@ function Places() {
             30900 Nîmes
           </p>
 
-          <img src={SpadaNimes} alt='Spada Nîmes' className='mx-auto h-48' />
+          <img alt='Spada Nîmes' className='mx-auto h-48' src={SpadaNimes} />
 
           <ul>
             <li className='mb-2'>
@@ -65,7 +59,11 @@ function Places() {
               Mardi 20h30 - 22h30
             </li>
             <li className='mb-2'>
-              Forme 3 : <br />
+              Forme 2 : <br />
+              Mardi 20h30 - 22h30
+            </li>
+            <li className='mb-2'>
+              Forme 4 : <br />
               Lundi 20h30 - 22h30
             </li>
           </ul>
@@ -73,6 +71,6 @@ function Places() {
       </div>
     </div>
   );
-}
+};
 
 export default Places;

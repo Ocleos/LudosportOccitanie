@@ -1,40 +1,40 @@
 {
-  "name": "ludosport_occitanie",
-  "description": "Infos about Ludosport Occitanie",
-  "repository": "git@github.com:Ocleos/LudosportOccitanie.git",
   "author": "Ocleos",
-  "license": "MIT",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "biome check . --apply",
-    "lint:unsafe": "biome check . --apply-unsafe",
-    "format": "biome format . --write",
-    "preview": "vite preview",
-    "prepare": "husky"
-  },
   "dependencies": {
-    "lucide-react": "^0.441.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "lucide-react": "^0.526.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
+  "description": "Infos about Ludosport Occitanie",
   "devDependencies": {
-    "@biomejs/biome": "^1.9.0",
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.7.0",
-    "autoprefixer": "^10.4.20",
-    "husky": "^9.1.6",
-    "postcss": "^8.4.45",
-    "tailwindcss": "^3.4.11",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.5",
-    "vite-tsconfig-paths": "^5.0.1"
+    "@biomejs/biome": "^2.1.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react-swc": "^3.11.0",
+    "autoprefixer": "^10.4.21",
+    "husky": "^9.1.7",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.6",
+    "vite-tsconfig-paths": "^5.1.4"
   },
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+  "license": "MIT",
+  "name": "ludosport_occitanie",
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
+  "private": true,
+  "repository": "git@github.com:Ocleos/LudosportOccitanie.git",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "format": "biome format . --write",
+    "lint": "biome check . --write",
+    "lint:unsafe": "biome check . --write",
+    "prepare": "husky",
+    "preview": "vite preview"
+  },
+  "type": "module",
+  "version": "0.0.0"
 }

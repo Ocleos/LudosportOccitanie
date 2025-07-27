@@ -1,13 +1,14 @@
-import { Calendar } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import { useMemo } from 'react';
 
-interface IEventCardProps {
+type EventCardProps = {
   startDate?: string;
   endDate?: string;
   fromDate?: string;
   description: string;
-}
-const EventCard: React.FC<IEventCardProps> = ({ startDate, endDate, fromDate, description }) => {
+};
+
+const EventCard: React.FC<EventCardProps> = ({ startDate, endDate, fromDate, description }) => {
   const getFullDate = useMemo(() => {
     let fullDate = '';
 
@@ -24,7 +25,7 @@ const EventCard: React.FC<IEventCardProps> = ({ startDate, endDate, fromDate, de
 
   return (
     <div className='mx-auto mb-4 flex max-w-xl flex-row gap-4 rounded-lg border-2 p-4'>
-      <Calendar className='m-auto h-8 w-8 flex-none' />
+      <CalendarIcon className='m-auto h-8 w-8 flex-none' />
       <div className='flex-1 flex-col'>
         <p className='font-bold text-md'>{getFullDate}</p>
         <p>{description}</p>

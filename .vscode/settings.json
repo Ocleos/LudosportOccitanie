@@ -1,20 +1,22 @@
 {
-  "editor.linkedEditing": true,
-  "editor.tabSize": 2,
+  "cSpell.ignoreRegExpList": ["/from\\\\s+(['\\\"]).*\\\\1/"],
+  "cSpell.ignoreWords": ["biomejs", "commitlint", "dayjs", "tailwindcss"],
+  "cSpell.words": ["Ludosport", "Occitanie", "Spada"],
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
     "quickfix.biome": "explicit",
-    "source.organizeImports": "explicit",
+    "source.action.useSortedAttributes.biome": "explicit",
+    "source.action.useSortedKeys.biome": "explicit",
+    "source.action.useSortedProperties.biome": "explicit",
+    "source.fixAll": "explicit",
     "source.organizeImports.biome": "explicit"
   },
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
+  "editor.tabSize": 2,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 120,
   "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "cSpell.words": ["Ludosport", "Occitanie", "Spada"],
-  "cSpell.ignoreRegExpList": ["/from\\\\s+(['\\\"]).*\\\\1/"],
-  "cSpell.ignoreWords": ["biomejs", "commitlint", "dayjs", "tailwindcss"]
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }

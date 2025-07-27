@@ -1,9 +1,9 @@
 import LudosportOccitanieLogo from '../assets/LudoSportOccitanie.svg';
 
-function Home() {
+const Home = () => {
   return (
     <div className='flex min-h-screen w-full flex-col justify-center gap-6 xs:gap-4'>
-      <img src={LudosportOccitanieLogo} alt='Ludosport Occitanie' className='w-48 self-center' />
+      <img alt='Ludosport Occitanie' className='w-48 self-center' src={LudosportOccitanieLogo} />
       <h1 className='self-center font-extrabold font-neo-bold text-lg sm:mb-8 sm:text-3xl lg:text-5xl'>
         Combat sportif au sabre laser
       </h1>
@@ -29,6 +29,6 @@ function Home() {
       <p className='self-center font-bold text-xl italic sm:mt-8'>... Et par-dessus tout, au sabre laser !</p>
     </div>
   );
-}
+};
 
 export default Home;

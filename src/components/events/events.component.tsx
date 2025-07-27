@@ -1,6 +1,6 @@
 import EventCard from './eventCard.component';
 
-function Events() {
+const Events = () => {
   return (
     <div>
       <span className='mb-4 block text-center font-bold text-primary text-xl uppercase'>Événements</span>
@@ -9,15 +9,15 @@ function Events() {
         Vous souhaitez nous rencontrer et discuter avec nous, n'hésitez pas à venir aux prochains événements :
       </p>
 
-      <EventCard startDate='10/08/2024' description='Initiation Ludosport - Nîmes (Salle Oh My Dance)' />
+      <EventCard description='Forum des associations - Nîmes' startDate='06/09/2025' />
 
-      <EventCard startDate='08/09/204' description='Antigone des Associations - Montpellier' />
+      <EventCard description='Antigone des Associations - Montpellier' startDate='07/09/2025' />
 
-      <EventCard startDate='09/09/2024' endDate='13/09/2024' description='Reprise des cours' />
+      <EventCard description='Reprise des cours' endDate='12/09/2025' startDate='08/09/2025' />
 
-      <EventCard startDate='14/09/2024' endDate='15/09/2024' description='VitalSport Décathlon - Nîmes' />
+      <EventCard description='VitalSport Décathlon - Nîmes' endDate='14/09/2025' startDate='13/09/2025' />
     </div>
   );
-}
+};
 
 export default Events;

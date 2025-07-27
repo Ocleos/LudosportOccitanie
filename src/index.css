@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @font-face {
   font-family: "NeoSansProBold";
@@ -10,4 +8,17 @@
 @font-face {
   font-family: "NeoSansProRegular";
   src: url("/fonts/NeoSansProRegular.ttf");
+}
+
+@theme {
+  --aspect-video-short: 9 / 16;
+
+  --color-primary: oklch(0.6916 0.1773 51.92);
+  --color-primary-dark: oklch(0.5975 0.1613 47.87);
+  --color-primary-light: oklch(0.7638 0.1742 61.55);
+
+  --font-neo: "NeoSansProRegular";
+  --font-neo-bold: "NeoSansProBold";
+
+  --breakpoint-xs: 23rem;
 }
