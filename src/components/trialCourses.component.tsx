@@ -8,10 +8,7 @@ const TrialCourses = () => {
       </p>
 
       <div className='flex flex-row justify-center'>
-        <a
-          href='https://docs.google.com/forms/d/e/1FAIpQLScpqAm2JQG9D3aI4ynLw-SKDNSAPz6cxy97FU-kzb6e2rI7YA/viewform?usp=pp_url'
-          rel='noreferrer'
-          target='_blank'>
+        <a href='https://forms.gle/3yFPJ21Rjw5KAvj58' rel='noreferrer' target='_blank'>
           <button className='rounded bg-primary px-4 py-2 font-bold hover:bg-primary-dark' type='button'>
             Participer à un cours d'essai
           </button>
