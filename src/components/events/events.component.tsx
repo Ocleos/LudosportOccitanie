@@ -2,8 +2,10 @@ import EventCard from './eventCard.component';
 
 const Events = () => {
   return (
-    <div>
-      <span className='mb-4 block text-center font-bold text-primary text-xl uppercase'>Événements</span>
+    <section aria-labelledby='events-title'>
+      <h2 className='mb-4 block text-center font-bold text-primary text-xl uppercase' id='events-title'>
+        Événements
+      </h2>
 
       <p className='mb-4 text-center'>
         Vous souhaitez nous rencontrer et discuter avec nous, n'hésitez pas à venir aux prochains événements :
@@ -15,7 +17,7 @@ const Events = () => {
       <EventCard description='Reprise des cours' endDate='11/09/2026' startDate='07/09/2026' />
 
       <EventCard description='VitalSport Décathlon - Montpellier' endDate='13/09/2026' startDate='12/09/2026' />
-    </div>
+    </section>
   );
 };
 

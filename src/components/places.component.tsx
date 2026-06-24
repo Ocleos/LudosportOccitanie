@@ -3,10 +3,10 @@ import SpadaNimes from '../assets/SpadaNimes.svg';
 
 const Places = () => {
   return (
-    <div>
-      <span className='mb-4 block text-center font-bold text-primary text-xl uppercase'>
+    <section aria-labelledby='places-title'>
+      <h2 className='mb-4 block text-center font-bold text-primary text-xl uppercase' id='places-title'>
         Écoles / Planning Entrainements
-      </span>
+      </h2>
 
       <div className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2'>
         <div className='flex flex-col gap-4 rounded-lg border-2 p-4 text-center'>
@@ -69,7 +69,7 @@ const Places = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

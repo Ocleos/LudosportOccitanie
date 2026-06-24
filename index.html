@@ -1,14 +1,54 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link href="/logo.svg" rel="icon" type="image/svg+xml" />
-    <link href="/src/index.css" rel="stylesheet">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Ludosport Occitanie</title>
+    <meta
+      content="Ludosport Occitanie propose des cours de combat sportif au sabre laser, des séances d'entraînement et des cours d'essai en Occitanie."
+      name="description"
+    />
+    <meta
+      content="sabre laser, combat sportif, Ludosport Occitanie, cours d'essai, sabre laser Montpellier, sabre laser Nîmes"
+      name="keywords"
+    />
+    <meta content="index, follow" name="robots" />
+    <meta content="#0f172a" name="theme-color" />
+    <link href="https://ludosport-occitanie.vercel.app/" rel="canonical" />
+    <meta content="Ludosport Occitanie - Combat sportif au sabre laser" property="og:title" />
+    <meta
+      content="Découvrez Ludosport Occitanie : cours de sabre laser, entraînements, événements et cours d'essai en Occitanie."
+      property="og:description"
+    />
+    <meta content="website" property="og:type" />
+    <meta content="fr_FR" property="og:locale" />
+    <meta content="/logo.svg" property="og:image" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="Ludosport Occitanie - Combat sportif au sabre laser" name="twitter:title" />
+    <meta
+      content="Rejoignez Ludosport Occitanie pour pratiquer le combat sportif au sabre laser en Occitanie."
+      name="twitter:description"
+    />
+    <link href="/logo.svg" rel="icon" type="image/svg+xml" />
+    <link href="/src/index.css" rel="stylesheet" />
+    <title>Ludosport Occitanie - Combat sportif au sabre laser</title>
   </head>
   <body>
     <div id="root"></div>
-    <script src="/src/main.tsx" type="module" ></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsOrganization",
+        "name": "Ludosport Occitanie",
+        "url": "https://ludosport-occitanie.vercel.app/",
+        "description": "Association sportive proposant du combat sportif au sabre laser en Occitanie.",
+        "sport": "Laser sword combat",
+        "areaServed": ["Montpellier", "Nîmes", "Occitanie"],
+        "sameAs": [
+          "https://www.facebook.com/ludosportoccitanie/",
+          "https://www.instagram.com/ludosport.occitanie/"
+        ]
+      }
+    </script>
+    <script src="/src/main.tsx" type="module"></script>
   </body>
 </html>
