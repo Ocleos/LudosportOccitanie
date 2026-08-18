@@ -21,19 +21,32 @@
     />
     <meta content="website" property="og:type" />
     <meta content="fr_FR" property="og:locale" />
-    <meta content="/logo.svg" property="og:image" />
-    <meta content="summary" name="twitter:card" />
+    <meta content="https://ludosport-occitanie.vercel.app/og-image.png" property="og:image" />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="summary_large_image" name="twitter:card" />
     <meta content="Ludosport Occitanie - Combat sportif au sabre laser" name="twitter:title" />
     <meta
       content="Rejoignez Ludosport Occitanie pour pratiquer le combat sportif au sabre laser en Occitanie."
       name="twitter:description"
     />
+    <meta content="https://ludosport-occitanie.vercel.app/og-image.png" name="twitter:image" />
     <link href="/logo.svg" rel="icon" type="image/svg+xml" />
+    <link href="/favicon.ico" rel="icon" sizes="48x48" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/manifest.json" rel="manifest" />
     <link href="/src/index.css" rel="stylesheet" />
     <title>Ludosport Occitanie - Combat sportif au sabre laser</title>
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      This block is allow-listed in vercel.json's Content-Security-Policy via a sha256 hash (no 'unsafe-inline').
+      If you edit the JSON below, recompute the hash and update the script-src directive in vercel.json:
+      python3 -c "import re,hashlib,base64; s=re.search(r'ld\+json\">(.*?)</script>', open('index.html').read(), re.S)[1]; print('sha256-' + base64.b64encode(hashlib.sha256(s.encode()).digest()).decode())"
+    -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

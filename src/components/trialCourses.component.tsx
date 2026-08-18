@@ -163,7 +163,7 @@ const TrialCourses = () => {
             onChange={handleChange}
             value={formData.course}>
             <option value='Montpellier - Mardi 20h30 - 22h30'>Montpellier - Mardi 20h30 - 22h30</option>
-            <option value='Nîmes - Mardi 20h30 - 22h30'>Nîmes - Mardi 20h30 - 22h30</option>
+            <option value='Nîmes - Mardi 21h00 - 23h00'>Nîmes - Mardi 21h00 - 23h00</option>
           </select>
         </label>
 
@@ -208,7 +208,7 @@ const TrialCourses = () => {
         {feedback ? <p className='text-primary text-sm'>{feedback}</p> : null}
 
         <button
-          className='rounded bg-primary px-4 py-2 font-bold text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-70'
+          className='rounded bg-primary px-4 py-2 font-bold text-slate-950 transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-70'
           disabled={isSubmitting}
           type='submit'>
           {isSubmitting ? 'Envoi en cours...' : "Participer à un cours d'essai"}

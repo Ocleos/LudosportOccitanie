@@ -2,8 +2,6 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
 
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],

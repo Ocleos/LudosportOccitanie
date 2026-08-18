@@ -17,7 +17,7 @@ is fixed, update or remove its entry rather than letting the file drift out of s
 
 ## Commands
 
-Package manager is **Bun** (`bun.lock` is the committed lockfile; there is no `pnpm-lock.yaml`).
+Package manager is **Bun** (`bun.lock` is the committed lockfile).
 
 - `bun install` — install dependencies
 - `bun dev` — start the Vite dev server

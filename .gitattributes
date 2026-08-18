@@ -2,7 +2,11 @@
 * text eol=lf
 *.jpg binary
 *.png binary
+*.webp binary
+*.ico binary
 *.zip binary
 *.otf binary
 *.ttf binary
+*.woff binary
+*.woff2 binary
 *.gz binary
