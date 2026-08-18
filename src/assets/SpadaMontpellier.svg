@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 401.00 1396.00">
-<path fill="#ffffff" d="
+<svg version="1.1" viewBox="0.00 0.00 401.00 1396.00" xmlns="http://www.w3.org/2000/svg" >
+<title>Spada Montpellier</title>
+<path d="
   M 197.44 0.00
   L 199.07 0.00
   C 216.76 6.90 223.22 114.25 224.49 133.75
@@ -25,9 +26,9 @@
   C 196.16 209.39 190.06 402.77 196.36 596.25
   Q 196.41 597.68 196.52 596.26
   C 196.89 591.84 196.76 585.88 196.82 582.90
-  Z"
+  Z" fill="#ffffff" 
 />
-<path fill="#ffffff" d="
+<path d="
   M 200.91 1396.00
   L 196.69 1396.00
   Q 189.76 1394.56 186.08 1388.89
@@ -152,6 +153,6 @@
   Q 205.88 1373.48 206.31 1373.86
   C 210.42 1377.43 214.99 1381.70 212.17 1387.60
   Q 208.93 1394.35 200.91 1396.00
-  Z"
+  Z" fill="#ffffff" 
 />
 </svg>

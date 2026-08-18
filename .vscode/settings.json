@@ -19,12 +19,17 @@
   "cSpell.ignoreWords": ["biomejs", "commitlint", "dayjs", "tailwindcss"],
   "cSpell.words": ["Ludosport", "Occitanie", "Spada"],
   "editor.codeActionsOnSave": {
+    "source.action.noDuplicateClasses.biome": "explicit",
     "source.action.useSortedAttributes.biome": "explicit",
+    "source.action.useSortedEnumMembers.biome": "explicit",
+    "source.action.useSortedInterfaceMembers.biome": "explicit",
     "source.action.useSortedKeys.biome": "explicit",
     "source.action.useSortedProperties.biome": "explicit",
+    "source.action.useSortedSelectionSet.biome": "explicit",
+    "source.action.useSortedTypeFields.biome": "explicit",
+    "source.fixAll": "explicit",
     "source.fixAll.biome": "explicit",
-    "source.organizeImports.biome": "explicit",
-    "source.sortMembers": "explicit"
+    "source.organizeImports.biome": "explicit"
   },
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
@@ -32,6 +37,9 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 120,
+  "explorer.fileNesting.patterns": {
+    "README.md": "CHANGELOG.md, LICENSE*, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, AUDIT.md, CLAUDE.md"
+  },
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "js/ts.updateImportsOnFileMove.enabled": "always"

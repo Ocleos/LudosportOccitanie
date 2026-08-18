@@ -1,12 +1,18 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.9/schema.json",
   "assist": {
     "actions": {
       "source": {
+        "noDuplicateClasses": "on",
         "organizeImports": "on",
         "useSortedAttributes": "on",
+        "useSortedEnumMembers": "on",
+        "useSortedInterfaceMembers": "on",
         "useSortedKeys": "on",
-        "useSortedProperties": "on"
+        "useSortedPackageJson": "off",
+        "useSortedProperties": "on",
+        "useSortedSelectionSet": "on",
+        "useSortedTypeFields": "on"
       }
     },
     "enabled": true
@@ -17,13 +23,13 @@
     }
   },
   "files": {
-    "ignoreUnknown": true,
-    "includes": ["**", "!**/node_modules/**/*.*", "!**/*.svg"]
+    "ignoreUnknown": false
   },
   "formatter": {
     "attributePosition": "auto",
     "bracketSameLine": true,
     "bracketSpacing": true,
+    "delimiterSpacing": false,
     "enabled": true,
     "expand": "auto",
     "formatWithErrors": true,
@@ -35,8 +41,12 @@
   "javascript": {
     "formatter": {
       "arrowParentheses": "always",
+      "attributePosition": "auto",
       "bracketSameLine": true,
       "bracketSpacing": true,
+      "delimiterSpacing": false,
+      "enabled": true,
+      "expand": "auto",
       "indentStyle": "space",
       "indentWidth": 2,
       "jsxQuoteStyle": "single",
@@ -46,7 +56,8 @@
       "quoteProperties": "asNeeded",
       "quoteStyle": "single",
       "semicolons": "always",
-      "trailingCommas": "all"
+      "trailingCommas": "all",
+      "trailingNewline": true
     }
   },
   "json": {
@@ -81,6 +92,14 @@
       }
     }
   },
+  "overrides": [
+    {
+      "formatter": {
+        "expand": "auto"
+      },
+      "includes": ["**/package.json"]
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,
