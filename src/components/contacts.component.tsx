@@ -1,35 +1,48 @@
 import { MailIcon, PhoneIcon } from 'lucide-react';
+import Card from './ui/card.component';
+import LabelLinkIcon from './ui/labelLinkIcon.component';
+import Title from './ui/title.component';
 
 const Contacts = () => {
   return (
     <section aria-labelledby='contacts-title'>
-      <h2 className='mb-4 block text-center font-bold text-primary text-xl uppercase' id='contacts-title'>
-        Contacts
-      </h2>
+      <div className='flex flex-col gap-8'>
+        <Title id='contacts-title' level='h1' text='Contacts' />
 
-      <div className='m-auto flex w-full flex-row justify-center gap-8 p-4'>
-        <a
-          aria-label='Envoyer un email à Montpellier'
-          href='mailto:montpellier@ludosport.net'
-          rel='noreferrer'
-          target='_blank'>
-          <span className='flex flex-row gap-4'>
-            <MailIcon aria-hidden='true' className='h-12 w-12' />
-            <p className='my-auto font-bold'>Montpellier</p>
-          </span>
-        </a>
+        <div className='flex flex-col gap-4 sm:flex-row sm:justify-center'>
+          <Card>
+            <p className='font-bold text-xl'>Montpellier</p>
 
-        <a aria-label='Envoyer un email à Nîmes' href='mailto:nimes@ludosport.net' rel='noreferrer' target='_blank'>
-          <span className='flex flex-row gap-4'>
-            <MailIcon aria-hidden='true' className='h-12 w-12' />
-            <p className='my-auto font-bold'>Nîmes</p>
-          </span>
-        </a>
-      </div>
+            <LabelLinkIcon
+              ariaLabel='Envoyer un email à Montpellier'
+              icon={MailIcon}
+              label='montpellier@ludosport.net'
+              link='mailto:montpellier@ludosport.net'
+            />
+          </Card>
 
-      <div className='flex flex-row justify-center gap-4'>
-        <PhoneIcon aria-hidden='true' className='h-12 w-12' />
-        <p className='my-auto font-bold'>06 50 79 33 97</p>
+          <Card>
+            <p className='font-bold text-xl'>Nîmes</p>
+
+            <LabelLinkIcon
+              ariaLabel='Envoyer un email à Nîmes'
+              icon={MailIcon}
+              label='nimes@ludosport.net'
+              link='mailto:nimes@ludosport.net'
+            />
+          </Card>
+
+          <Card>
+            <p className='font-bold text-xl'>Téléphone</p>
+
+            <LabelLinkIcon
+              ariaLabel='Appeler au 06 50 79 33 97'
+              icon={PhoneIcon}
+              label='06 50 79 33 97'
+              link='tel:+33650793397'
+            />
+          </Card>
+        </div>
       </div>
     </section>
   );

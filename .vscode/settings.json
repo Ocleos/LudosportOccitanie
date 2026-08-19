@@ -16,7 +16,7 @@
     "typescriptreact"
   ],
   "cSpell.ignoreRegExpList": ["/from\\\\s+(['\\\"]).*\\\\1/"],
-  "cSpell.ignoreWords": ["biomejs", "commitlint", "dayjs", "tailwindcss"],
+  "cSpell.ignoreWords": ["youtube", "biomejs", "commitlint", "dayjs", "tailwindcss"],
   "cSpell.words": ["Ludosport", "Occitanie", "Spada"],
   "editor.codeActionsOnSave": {
     "source.action.noDuplicateClasses.biome": "explicit",

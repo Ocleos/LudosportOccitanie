@@ -1,4 +1,5 @@
 import { type ChangeEvent, type SyntheticEvent, useMemo, useState } from 'react';
+import Title from './ui/title.component';
 
 type TrialCourseFormState = {
   firstName: string;
@@ -25,8 +26,6 @@ const TrialCourses = () => {
   const [feedback, setFeedback] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const openedAt = useMemo(() => Date.now(), []);
-
-  const formSubmitUrl = import.meta.env.VITE_FORM_SUBMIT_ENDPOINT?.trim();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -58,26 +57,19 @@ const TrialCourses = () => {
       return;
     }
 
-    if (!formSubmitUrl) {
-      setFeedback('La configuration FormSubmit n’est pas encore définie. Merci de contacter l’administrateur du site.');
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(formSubmitUrl, {
+      const response = await fetch('/api/trial-course', {
         body: JSON.stringify({
-          _captcha: 'false',
-          _replyto: formData.email.trim(),
-          _subject: `Cours d'essai - ${formData.firstName.trim()} ${formData.lastName.trim()}`,
-          _template: 'table',
-          Age: formData.age.trim(),
-          Cours: formData.course,
-          Email: formData.email.trim(),
-          Nom: formData.lastName.trim(),
-          Prénom: formData.firstName.trim(),
-          Téléphone: formData.telephone.trim(),
+          age: formData.age.trim(),
+          course: formData.course,
+          email: formData.email.trim(),
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          openedAt,
+          telephone: formData.telephone.trim(),
+          website: formData.website,
         }),
         headers: {
           Accept: 'application/json',
@@ -101,119 +93,120 @@ const TrialCourses = () => {
 
   return (
     <section aria-labelledby='trial-courses-title'>
-      <h2 className='mb-4 block text-center font-bold text-primary text-xl uppercase' id='trial-courses-title'>
-        Cours d'essai
-      </h2>
+      <div className='flex flex-col gap-8'>
+        <Title id='trial-courses-title' level='h1' text="Cours d'essai" />
 
-      <p className='mb-4 text-center'>
-        Vous souhaitez participer à un cours d'essai ? Remplissez ce formulaire et votre demande sera envoyée via mail.
-      </p>
+        <p className='mb-4 text-center'>
+          Vous souhaitez participer à un cours d'essai ? Remplissez ce formulaire et votre demande sera envoyée via
+          mail.
+        </p>
 
-      <form
-        className='mx-auto flex max-w-xl flex-col gap-4 rounded-lg border border-white/20 bg-slate-900/70 p-6 shadow-lg'
-        onSubmit={handleSubmit}>
-        <div className='grid gap-4 md:grid-cols-2'>
-          <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='firstName'>
-            Prénom *
+        <form
+          className='mx-auto flex max-w-xl flex-col gap-4 rounded-lg border border-white/20 bg-slate-900/70 p-6 shadow-lg'
+          onSubmit={handleSubmit}>
+          <div className='grid gap-4 md:grid-cols-2'>
+            <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='firstName'>
+              Prénom *
+              <input
+                className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
+                id='firstName'
+                name='firstName'
+                onChange={handleChange}
+                required
+                type='text'
+                value={formData.firstName}
+              />
+            </label>
+
+            <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='lastName'>
+              Nom *
+              <input
+                className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
+                id='lastName'
+                name='lastName'
+                onChange={handleChange}
+                required
+                type='text'
+                value={formData.lastName}
+              />
+            </label>
+          </div>
+
+          <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='age'>
+            Âge *
             <input
               className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
-              id='firstName'
-              name='firstName'
+              id='age'
+              min='14'
+              name='age'
               onChange={handleChange}
               required
-              type='text'
-              value={formData.firstName}
+              type='number'
+              value={formData.age}
             />
           </label>
 
-          <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='lastName'>
-            Nom *
+          <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='course'>
+            Cours *
+            <select
+              className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
+              id='course'
+              name='course'
+              onChange={handleChange}
+              value={formData.course}>
+              <option value='Montpellier - Mardi 20h30 - 22h30'>Montpellier - Mardi 20h30 - 22h30</option>
+              <option value='Nîmes - Mardi 21h00 - 23h00'>Nîmes - Mardi 21h00 - 23h00</option>
+            </select>
+          </label>
+
+          <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='email'>
+            Email *
             <input
               className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
-              id='lastName'
-              name='lastName'
+              id='email'
+              name='email'
               onChange={handleChange}
+              placeholder='ex. prenom@example.com'
               required
-              type='text'
-              value={formData.lastName}
+              type='email'
+              value={formData.email}
             />
           </label>
-        </div>
 
-        <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='age'>
-          Âge *
+          <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='telephone'>
+            Téléphone *
+            <input
+              className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
+              id='telephone'
+              name='telephone'
+              onChange={handleChange}
+              placeholder='ex. 06 12 34 56 78'
+              required
+              type='tel'
+              value={formData.telephone}
+            />
+          </label>
+
           <input
-            className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
-            id='age'
-            min='14'
-            name='age'
+            autoComplete='off'
+            className='hidden'
+            name='website'
             onChange={handleChange}
-            required
-            type='number'
-            value={formData.age}
+            tabIndex={-1}
+            type='text'
+            value={formData.website}
           />
-        </label>
 
-        <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='course'>
-          Cours *
-          <select
-            className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
-            id='course'
-            name='course'
-            onChange={handleChange}
-            value={formData.course}>
-            <option value='Montpellier - Mardi 20h30 - 22h30'>Montpellier - Mardi 20h30 - 22h30</option>
-            <option value='Nîmes - Mardi 21h00 - 23h00'>Nîmes - Mardi 21h00 - 23h00</option>
-          </select>
-        </label>
+          {feedback ? <p className='text-primary text-sm'>{feedback}</p> : null}
 
-        <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='email'>
-          Email *
-          <input
-            className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
-            id='email'
-            name='email'
-            onChange={handleChange}
-            placeholder='ex. prenom@example.com'
-            required
-            type='email'
-            value={formData.email}
-          />
-        </label>
-
-        <label className='flex flex-col gap-2 font-semibold text-slate-100 text-sm' htmlFor='telephone'>
-          Téléphone *
-          <input
-            className='rounded border border-slate-600 bg-slate-950/70 px-3 py-2 text-white outline-none ring-0 transition focus:border-primary'
-            id='telephone'
-            name='telephone'
-            onChange={handleChange}
-            placeholder='ex. 06 12 34 56 78'
-            required
-            type='tel'
-            value={formData.telephone}
-          />
-        </label>
-
-        <input
-          autoComplete='off'
-          className='hidden'
-          name='website'
-          onChange={handleChange}
-          tabIndex={-1}
-          type='text'
-          value={formData.website}
-        />
-
-        {feedback ? <p className='text-primary text-sm'>{feedback}</p> : null}
-
-        <button
-          className='rounded bg-primary px-4 py-2 font-bold text-slate-950 transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-70'
-          disabled={isSubmitting}
-          type='submit'>
-          {isSubmitting ? 'Envoi en cours...' : "Participer à un cours d'essai"}
-        </button>
-      </form>
+          <button
+            className='rounded bg-primary px-4 py-2 font-bold text-slate-950 transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-70'
+            disabled={isSubmitting}
+            type='submit'>
+            {isSubmitting ? 'Envoi en cours...' : "Participer à un cours d'essai"}
+          </button>
+        </form>
+      </div>
     </section>
   );
 };

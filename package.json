@@ -1,35 +1,41 @@
 {
   "author": "Ocleos",
   "dependencies": {
-    "lucide-react": "^1.32.0",
+    "@tanstack/react-router": "^1.170.32",
+    "dayjs": "^1.11.23",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.33.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
   "description": "Infos about Ludosport Occitanie",
   "devDependencies": {
-    "@biomejs/biome": "^2.5.9",
+    "@biomejs/biome": "^2.5.10",
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/router-cli": "^1.167.33",
+    "@tanstack/router-plugin": "^1.168.35",
+    "@types/leaflet": "^1.9.22",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-react": "^6.0.3",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.0",
     "autoprefixer": "^10.5.4",
     "husky": "^9.1.7",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
-    "vite": "^8.2.1"
+    "vite": "^8.2.2"
   },
   "license": "MIT",
   "name": "ludosport_occitanie",
   "private": true,
   "repository": "git@github.com:Ocleos/LudosportOccitanie.git",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsr generate && tsc && vite build",
     "dev": "vite",
     "format": "biome format . --write",
     "lint": "biome check . --write",
-    "lint:unsafe": "biome check . --write",
+    "lint:unsafe": "biome check . --write --unsafe",
     "prepare": "husky",
     "preview": "vite preview"
   },
