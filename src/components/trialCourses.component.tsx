@@ -155,7 +155,7 @@ const TrialCourses = () => {
               onChange={handleChange}
               value={formData.course}>
               <option value='Montpellier - Mardi 20h30 - 22h30'>Montpellier - Mardi 20h30 - 22h30</option>
-              <option value='Nîmes - Mardi 21h00 - 23h00'>Nîmes - Mardi 21h00 - 23h00</option>
+              <option value='Nîmes - Mardi 21h00 - 23h00'>Nîmes - Mardi 21h00 - 22h30</option>
             </select>
           </label>
 

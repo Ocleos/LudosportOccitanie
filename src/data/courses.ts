@@ -54,7 +54,7 @@ export const COURSES: Course[] = [
   },
   {
     day: 'Mardi',
-    endTime: '23h00',
+    endTime: '22h30',
     instructor: 'Romain Argillier',
     place: PLACES.caissargues,
     school: 'nimes',
@@ -63,7 +63,7 @@ export const COURSES: Course[] = [
   },
   {
     day: 'Mardi',
-    endTime: '23h00',
+    endTime: '22h30',
     instructor: 'Adrien Thorent',
     place: PLACES.caissargues,
     school: 'nimes',

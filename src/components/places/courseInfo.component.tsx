@@ -8,7 +8,7 @@ const CourseInfo = () => {
       <Card>
         <p>
           Nos cours se déroulent de début septembre à fin juin, avec des pauses pendant les vacances scolaires. Chaque
-          session dure 2h00.
+          session dure 1h30 ou 2h00 en fonction du créneau.
         </p>
 
         <p className='font-bold text-xl'>
@@ -21,12 +21,12 @@ const CourseInfo = () => {
             musculaires adaptés à la forme travaillée
           </li>
           <li>
-            <span className='font-bold'>1h15' - Enseignement</span> : Apprentissage et pratique des techniques,
+            <span className='font-bold'>1h ou 1h15' - Enseignement</span> : Apprentissage et pratique des techniques,
             répétition d'enchaînements et concepts de la forme
           </li>
           <li>
-            <span className='font-bold'>30' - Combats</span> : Mise en pratique des techniques apprises à travers des
-            combats
+            <span className='font-bold'>15' ou 30' - Combats</span> : Mise en pratique des techniques apprises à travers
+            des combats
           </li>
         </ul>
       </Card>
