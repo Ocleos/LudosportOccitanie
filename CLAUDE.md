@@ -76,14 +76,17 @@ Commits via commitlint (`@commitlint/config-conventional`).
   non-trivial third-party integration outside the trial-course form.
 - `TrialCourses` ([src/components/trialCourses.component.tsx](src/components/trialCourses.component.tsx)), the
   `/cours-essai` page, is the one interactive/stateful component: a controlled form that POSTs JSON to
-  [api/trial-course.ts](api/trial-course.ts), a Vercel Edge Function that relays to FormSubmit. The real FormSubmit
-  endpoint/CC addresses live in server-only env vars (`FORM_SUBMIT_ENDPOINT`, `FORM_SUBMIT_CC` — comma-separated, see
-  `.env.local`) — deliberately **not** `VITE_`-prefixed, since `VITE_*` vars are inlined in plain text into the
-  shipped client bundle. The client sends the honeypot (`website`) field and the time-on-page timestamp (`openedAt`)
-  along with the form data, and the Edge Function re-checks both server-side (plus required-field/email/age
-  validation and a same-origin check) before relaying to FormSubmit — this closes the direct-`curl`-to-FormSubmit
-  bypass a client-only check can't prevent. Follow this pattern (proxy through `api/`, keep secrets un-prefixed) for
-  any other form added later.
+  [api/trial-course.ts](api/trial-course.ts), a Vercel Edge Function that sends the notification email via the
+  [Resend](https://resend.com) API. The Resend API key/sender/recipients live in server-only env vars
+  (`RESEND_API_KEY`, `RESEND_FROM`, `TRIAL_COURSE_RECIPIENTS` — comma-separated, see `.env.local`) — deliberately
+  **not** `VITE_`-prefixed, since `VITE_*` vars are inlined in plain text into the shipped client bundle. The client
+  sends the honeypot (`website`) field and the time-on-page timestamp (`openedAt`) along with the form data, and the
+  Edge Function re-checks both server-side (plus required-field/email/age validation and a same-origin check) before
+  calling Resend — this closes the direct-`curl`-to-the-endpoint bypass a client-only check can't prevent. Follow
+  this pattern (proxy through `api/`, keep secrets un-prefixed) for any other form added later.
+  (This previously proxied to FormSubmit instead of Resend; that was dropped because FormSubmit sits behind
+  Cloudflare's bot-management JS challenge, which flags cloud/datacenter IPs — including Vercel's shared egress
+  IPs — and can't be solved by any server-side HTTP client, only by executing JS in a real browser.)
 - **Content data**: `src/data/` holds typed data modules that components map over, keeping content separate from
   markup — `places.ts` exports the `PLACES` lookup (id/name/logo/address/accesses/latitude/longitude per venue) and
   the `Place` type; `courses.ts` exports the `COURSES` array (each entry referencing a `Place` plus a `school` of

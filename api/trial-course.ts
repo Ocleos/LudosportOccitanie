@@ -1,22 +1,20 @@
-// Vercel Function: proxies the "trial course" form to FormSubmit.
+// Vercel Edge Function: relays the "trial course" form to email via the Resend API.
 //
-// Keeping this server-side (instead of calling FormSubmit directly from the browser) avoids problems with the
-// previous client-side setup:
-// - `VITE_*` env vars are inlined in plain text into the shipped JS bundle, so the FormSubmit endpoint and CC
-//   addresses were readable by anyone (and scrapable by bots) via view-source/devtools.
-// - The honeypot + anti-bot delay were client-side JS only, so a direct `curl`/script POST to the leaked
-//   FormSubmit URL bypassed them entirely. Re-checking both here means bypassing the client no longer helps.
+// Keeping this server-side (instead of calling a third-party form backend directly from the browser) avoids
+// problems with the previous client-side setup:
+// - `VITE_*` env vars are inlined in plain text into the shipped JS bundle, so a form-backend endpoint/API key
+//   would be readable by anyone (and scrapable by bots) via view-source/devtools.
+// - The honeypot + anti-bot delay were client-side JS only, so a direct `curl`/script POST to a leaked endpoint
+//   bypassed them entirely. Re-checking both here means bypassing the client no longer helps.
 // - A same-origin check (Origin/Referer) and an upper bound on the fill-time window add further friction against
 //   scripted abuse without requiring a third-party captcha service.
 //
-// This runs on the Node.js runtime rather than the Edge Runtime specifically so the upstream call to FormSubmit
-// (below) can use `node:https` instead of `fetch()`: FormSubmit identifies the submitting page via the `Referer`
-// header, but `Referer` is a forbidden header name under the Fetch spec, and the Edge Runtime enforces that
-// strictly — neither `headers.Referer` nor RequestInit's `referrer` field, nor FormSubmit's own `_url` escape
-// hatch, got a working Referer through (confirmed empirically, each still produced FormSubmit's "browsed as HTML
-// files" no-referrer response). `node:https` builds the request below the Fetch abstraction, so it isn't subject
-// to that restriction.
-import { request as httpsRequest } from 'node:https';
+// Previously this proxied to FormSubmit, but FormSubmit sits behind Cloudflare's bot-management JS challenge,
+// which flags traffic from cloud/datacenter IP ranges (including Vercel's shared egress IPs) and cannot be solved
+// by any server-side HTTP client — no header or transport change can get past a challenge that requires executing
+// JavaScript in a real browser. Resend is a plain token-authenticated API built for programmatic/serverless
+// sending, so it doesn't have that problem.
+export const config = { runtime: 'edge' };
 
 type TrialCoursePayload = {
   firstName?: string;
@@ -29,11 +27,7 @@ type TrialCoursePayload = {
   openedAt?: number; // Date.now() captured client-side when the form mounted.
 };
 
-type UpstreamResult = {
-  status: number;
-  body: unknown;
-};
-
+const RESEND_API_URL = 'https://api.resend.com/emails';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_AGE = 14;
 const MIN_FILL_TIME_MS = 3000;
@@ -41,13 +35,25 @@ const MAX_FILL_TIME_MS = 30 * 60 * 1000; // Beyond this, treat `openedAt` as sta
 const MAX_TEXT_FIELD_LENGTH = 200;
 
 // Strips ASCII/Unicode control characters — in particular `\r`/`\n`, the classic email-header-injection vector —
-// from free-text fields before they're forwarded to FormSubmit (e.g. via `_subject`, built from `firstName`/
-// `lastName` below), and caps their length as a further defensive bound.
+// from free-text fields before they're used to build the outgoing email, and caps their length as a further
+// defensive bound.
 const sanitizeField = (value: string): string =>
   value
     .replace(/\p{Cc}+/gu, ' ')
     .trim()
     .slice(0, MAX_TEXT_FIELD_LENGTH);
+
+const HTML_ESCAPES: Record<string, string> = {
+  "'": '&#39;',
+  '"': '&quot;',
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+};
+
+// Escapes text dropped into the notification email's HTML body — sanitizeField only strips control characters, not
+// HTML-significant ones, so this is still needed to stop a submitted field from injecting markup into the email.
+const escapeHtml = (value: string): string => value.replace(/[&<>"']/g, (char) => HTML_ESCAPES[char] ?? char);
 
 const jsonResponse = (body: unknown, status: number) =>
   new Response(JSON.stringify(body), {
@@ -77,45 +83,34 @@ const isSameOrigin = (request: Request): boolean => {
   return false;
 };
 
-// Posts JSON to `url` using `node:https` directly rather than `fetch()`, specifically so `headers` can include
-// `Referer` — see the module-level comment above for why that matters here.
-const postJson = (url: string, body: unknown, headers: Record<string, string>): Promise<UpstreamResult> =>
-  new Promise((resolve, reject) => {
-    const target = new URL(url);
-    const payload = Buffer.from(JSON.stringify(body));
+const buildEmailHtml = (fields: {
+  firstName: string;
+  lastName: string;
+  age: string;
+  course: string;
+  email: string;
+  telephone: string;
+}): string => {
+  const rows: Array<[string, string]> = [
+    ['Prénom', fields.firstName],
+    ['Nom', fields.lastName],
+    ['Âge', fields.age],
+    ['Email', fields.email],
+    ['Téléphone', fields.telephone],
+    ['Cours', fields.course],
+  ];
 
-    const req = httpsRequest(
-      {
-        headers: { ...headers, 'Content-Length': payload.length },
-        hostname: target.hostname,
-        method: 'POST',
-        path: `${target.pathname}${target.search}`,
-        protocol: target.protocol,
-      },
-      (res) => {
-        const chunks: Buffer[] = [];
-        res.on('data', (chunk: Buffer) => chunks.push(chunk));
-        res.on('end', () => {
-          const rawBody = Buffer.concat(chunks).toString('utf-8');
-          let parsedBody: unknown;
-          try {
-            parsedBody = JSON.parse(rawBody);
-          } catch {
-            // Not JSON (e.g. an HTML block/error page) — keep a truncated snippet rather than discarding it, so a
-            // failure is diagnosable from the logs instead of collapsing to an opaque `null`.
-            parsedBody = rawBody ? { nonJsonBody: rawBody.slice(0, 500) } : null;
-          }
-          resolve({ body: parsedBody, status: res.statusCode ?? 0 });
-        });
-      },
-    );
+  const rowsHtml = rows
+    .map(
+      ([label, value]) =>
+        `<tr><th align="left" style="padding:4px 12px 4px 0">${escapeHtml(label)}</th><td style="padding:4px 0">${escapeHtml(value)}</td></tr>`,
+    )
+    .join('');
 
-    req.on('error', reject);
-    req.write(payload);
-    req.end();
-  });
+  return `<table>${rowsHtml}</table>`;
+};
 
-const handler = async (request: Request): Promise<Response> => {
+export default async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') {
     return jsonResponse({ error: 'Method not allowed' }, 405);
   }
@@ -124,8 +119,13 @@ const handler = async (request: Request): Promise<Response> => {
     return jsonResponse({ error: 'Rejected' }, 403);
   }
 
-  const formSubmitUrl = process.env.FORM_SUBMIT_ENDPOINT?.trim();
-  if (!formSubmitUrl) {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from = process.env.RESEND_FROM?.trim();
+  const recipients = process.env.TRIAL_COURSE_RECIPIENTS?.trim()
+    .split(',')
+    .map((recipient) => recipient.trim())
+    .filter(Boolean);
+  if (!(apiKey && from && recipients?.length)) {
     return jsonResponse({ error: 'Server misconfigured' }, 500);
   }
 
@@ -169,61 +169,39 @@ const handler = async (request: Request): Promise<Response> => {
     return jsonResponse({ error: 'Invalid age' }, 400);
   }
 
-  const cc = process.env.FORM_SUBMIT_CC?.trim();
-
-  let upstream: UpstreamResult;
+  let upstream: Response;
   try {
-    upstream = await postJson(
-      formSubmitUrl,
-      {
-        _captcha: 'false',
-        _cc: cc,
-        _replyto: email,
-        _subject: `Cours d'essai - ${firstName} ${lastName}`,
-        _template: 'table',
-        Age: age,
-        Cours: course,
-        Email: email,
-        Nom: lastName,
-        Prénom: firstName,
-        Téléphone: telephone,
-      },
-      {
-        Accept: 'application/json',
-        'Accept-Language': 'fr-FR,fr;q=0.9',
+    upstream = await fetch(RESEND_API_URL, {
+      body: JSON.stringify({
+        from,
+        html: buildEmailHtml({ age, course, email, firstName, lastName, telephone }),
+        reply_to: email,
+        subject: `Cours d'essai - ${firstName} ${lastName}`,
+        to: recipients,
+      }),
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        Origin: new URL(request.url).origin,
-        Referer: `${new URL(request.url).origin}/cours-essai`,
-        // node:https sends no User-Agent by default (unlike fetch()), which alone is enough for FormSubmit's
-        // Cloudflare-fronted bot protection to reject the request outright before it's even parsed — a plausible
-        // browser-like one avoids that false positive without misrepresenting where the request actually comes
-        // from (it identifies this proxy, not a browser).
-        'User-Agent': 'LudosportOccitanie-TrialCourseProxy/1.0 (+https://www.ludosport-occitanie.fr)',
       },
-    );
+      method: 'POST',
+    });
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: server-side diagnostic for an otherwise-opaque upstream fetch failure.
-    console.error('Request to FormSubmit threw', error);
+    console.error('Fetch to Resend threw', error);
     return jsonResponse({ error: 'Upstream submission failed' }, 502);
   }
 
-  // FormSubmit can report a failure with an HTTP 200, so a 2xx status alone isn't a reliable success signal — the
-  // JSON body's own `success` field (a string, not a boolean) must agree.
-  const upstreamSucceeded =
-    upstream.status >= 200 &&
-    upstream.status < 300 &&
-    typeof upstream.body === 'object' &&
-    upstream.body !== null &&
-    'success' in upstream.body &&
-    String((upstream.body as { success: unknown }).success) === 'true';
-
-  if (!upstreamSucceeded) {
+  if (!upstream.ok) {
+    let upstreamBody: unknown;
+    try {
+      upstreamBody = await upstream.json();
+    } catch {
+      upstreamBody = null;
+    }
     // biome-ignore lint/suspicious/noConsole: server-side diagnostic for an otherwise-silent upstream failure.
-    console.error('FormSubmit rejected the trial-course submission', upstream);
+    console.error('Resend rejected the trial-course submission', { body: upstreamBody, status: upstream.status });
     return jsonResponse({ error: 'Upstream submission failed' }, 502);
   }
 
   return jsonResponse({ ok: true }, 200);
-};
-
-export default { fetch: handler };
+}
