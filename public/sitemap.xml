@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ludosport-occitanie.vercel.app/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.ludosport-occitanie.fr/</loc>
+    <lastmod>2026-08-24</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ludosport-occitanie.vercel.app/le-sport</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.ludosport-occitanie.fr/le-sport</loc>
+    <lastmod>2026-08-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ludosport-occitanie.vercel.app/cours</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.ludosport-occitanie.fr/cours</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ludosport-occitanie.vercel.app/cours-essai</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.ludosport-occitanie.fr/cours-essai</loc>
+    <lastmod>2026-08-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ludosport-occitanie.vercel.app/evenements</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.ludosport-occitanie.fr/evenements</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ludosport-occitanie.vercel.app/contacts</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.ludosport-occitanie.fr/contacts</loc>
+    <lastmod>2026-08-24</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

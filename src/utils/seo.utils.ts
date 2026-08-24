@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://ludosport-occitanie.vercel.app';
+export const SITE_URL = 'https://www.ludosport-occitanie.fr';
 
 type PageHead = {
   title: string;
