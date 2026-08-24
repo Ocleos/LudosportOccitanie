@@ -1,4 +1,4 @@
-// Vercel Edge Function: proxies the "trial course" form to FormSubmit.
+// Vercel Function: proxies the "trial course" form to FormSubmit.
 //
 // Keeping this server-side (instead of calling FormSubmit directly from the browser) avoids problems with the
 // previous client-side setup:
@@ -8,7 +8,15 @@
 //   FormSubmit URL bypassed them entirely. Re-checking both here means bypassing the client no longer helps.
 // - A same-origin check (Origin/Referer) and an upper bound on the fill-time window add further friction against
 //   scripted abuse without requiring a third-party captcha service.
-export const config = { runtime: 'edge' };
+//
+// This runs on the Node.js runtime rather than the Edge Runtime specifically so the upstream call to FormSubmit
+// (below) can use `node:https` instead of `fetch()`: FormSubmit identifies the submitting page via the `Referer`
+// header, but `Referer` is a forbidden header name under the Fetch spec, and the Edge Runtime enforces that
+// strictly — neither `headers.Referer` nor RequestInit's `referrer` field, nor FormSubmit's own `_url` escape
+// hatch, got a working Referer through (confirmed empirically, each still produced FormSubmit's "browsed as HTML
+// files" no-referrer response). `node:https` builds the request below the Fetch abstraction, so it isn't subject
+// to that restriction.
+import { request as httpsRequest } from 'node:https';
 
 type TrialCoursePayload = {
   firstName?: string;
@@ -19,6 +27,11 @@ type TrialCoursePayload = {
   telephone?: string;
   website?: string; // Honeypot: must stay empty, real visitors never see/fill this field.
   openedAt?: number; // Date.now() captured client-side when the form mounted.
+};
+
+type UpstreamResult = {
+  status: number;
+  body: unknown;
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,7 +77,45 @@ const isSameOrigin = (request: Request): boolean => {
   return false;
 };
 
-export default async function handler(request: Request): Promise<Response> {
+// Posts JSON to `url` using `node:https` directly rather than `fetch()`, specifically so `headers` can include
+// `Referer` — see the module-level comment above for why that matters here.
+const postJson = (url: string, body: unknown, headers: Record<string, string>): Promise<UpstreamResult> =>
+  new Promise((resolve, reject) => {
+    const target = new URL(url);
+    const payload = Buffer.from(JSON.stringify(body));
+
+    const req = httpsRequest(
+      {
+        headers: { ...headers, 'Content-Length': payload.length },
+        hostname: target.hostname,
+        method: 'POST',
+        path: `${target.pathname}${target.search}`,
+        protocol: target.protocol,
+      },
+      (res) => {
+        const chunks: Buffer[] = [];
+        res.on('data', (chunk: Buffer) => chunks.push(chunk));
+        res.on('end', () => {
+          const rawBody = Buffer.concat(chunks).toString('utf-8');
+          let parsedBody: unknown;
+          try {
+            parsedBody = JSON.parse(rawBody);
+          } catch {
+            // Not JSON (e.g. an HTML block/error page) — keep a truncated snippet rather than discarding it, so a
+            // failure is diagnosable from the logs instead of collapsing to an opaque `null`.
+            parsedBody = rawBody ? { nonJsonBody: rawBody.slice(0, 500) } : null;
+          }
+          resolve({ body: parsedBody, status: res.statusCode ?? 0 });
+        });
+      },
+    );
+
+    req.on('error', reject);
+    req.write(payload);
+    req.end();
+  });
+
+const handler = async (request: Request): Promise<Response> => {
   if (request.method !== 'POST') {
     return jsonResponse({ error: 'Method not allowed' }, 405);
   }
@@ -120,49 +171,59 @@ export default async function handler(request: Request): Promise<Response> {
 
   const cc = process.env.FORM_SUBMIT_CC?.trim();
 
-  const upstream = await fetch(formSubmitUrl, {
-    body: JSON.stringify({
-      _captcha: 'false',
-      _cc: cc,
-      _replyto: email,
-      _subject: `Cours d'essai - ${firstName} ${lastName}`,
-      _template: 'table',
-      Age: age,
-      Cours: course,
-      Email: email,
-      Nom: lastName,
-      Prénom: firstName,
-      Téléphone: telephone,
-    }),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Referer: `${new URL(request.url).origin}/cours-essai`,
-    },
-    method: 'POST',
-  });
-
-  let upstreamBody: unknown;
+  let upstream: UpstreamResult;
   try {
-    upstreamBody = await upstream.json();
-  } catch {
-    upstreamBody = null;
+    upstream = await postJson(
+      formSubmitUrl,
+      {
+        _captcha: 'false',
+        _cc: cc,
+        _replyto: email,
+        _subject: `Cours d'essai - ${firstName} ${lastName}`,
+        _template: 'table',
+        Age: age,
+        Cours: course,
+        Email: email,
+        Nom: lastName,
+        Prénom: firstName,
+        Téléphone: telephone,
+      },
+      {
+        Accept: 'application/json',
+        'Accept-Language': 'fr-FR,fr;q=0.9',
+        'Content-Type': 'application/json',
+        Origin: new URL(request.url).origin,
+        Referer: `${new URL(request.url).origin}/cours-essai`,
+        // node:https sends no User-Agent by default (unlike fetch()), which alone is enough for FormSubmit's
+        // Cloudflare-fronted bot protection to reject the request outright before it's even parsed — a plausible
+        // browser-like one avoids that false positive without misrepresenting where the request actually comes
+        // from (it identifies this proxy, not a browser).
+        'User-Agent': 'LudosportOccitanie-TrialCourseProxy/1.0 (+https://www.ludosport-occitanie.fr)',
+      },
+    );
+  } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: server-side diagnostic for an otherwise-opaque upstream fetch failure.
+    console.error('Request to FormSubmit threw', error);
+    return jsonResponse({ error: 'Upstream submission failed' }, 502);
   }
 
-  // FormSubmit can report a failure (e.g. the missing-Referer case above) with an HTTP 200, so `upstream.ok` alone
-  // isn't a reliable success signal — the JSON body's own `success` field (a string, not a boolean) must agree.
+  // FormSubmit can report a failure with an HTTP 200, so a 2xx status alone isn't a reliable success signal — the
+  // JSON body's own `success` field (a string, not a boolean) must agree.
   const upstreamSucceeded =
-    upstream.ok &&
-    typeof upstreamBody === 'object' &&
-    upstreamBody !== null &&
-    'success' in upstreamBody &&
-    String((upstreamBody as { success: unknown }).success) === 'true';
+    upstream.status >= 200 &&
+    upstream.status < 300 &&
+    typeof upstream.body === 'object' &&
+    upstream.body !== null &&
+    'success' in upstream.body &&
+    String((upstream.body as { success: unknown }).success) === 'true';
 
   if (!upstreamSucceeded) {
     // biome-ignore lint/suspicious/noConsole: server-side diagnostic for an otherwise-silent upstream failure.
-    console.error('FormSubmit rejected the trial-course submission', { body: upstreamBody, status: upstream.status });
+    console.error('FormSubmit rejected the trial-course submission', upstream);
     return jsonResponse({ error: 'Upstream submission failed' }, 502);
   }
 
   return jsonResponse({ ok: true }, 200);
-}
+};
+
+export default { fetch: handler };
