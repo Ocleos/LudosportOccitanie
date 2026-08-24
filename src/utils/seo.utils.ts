@@ -8,8 +8,8 @@ type PageHead = {
 };
 
 /**
- * Builds the per-route `head` option (title, description, canonical, Open Graph/Twitter title+description) consumed
- * by TanStack Router's `HeadContent` (rendered in `__root.tsx`). Site-wide constants that don't vary per route
+ * Builds the per-route `head` option (title, description, canonical, Open Graph/Twitter title+description, og:url)
+ * consumed by TanStack Router's `HeadContent` (rendered in `__root.tsx`). Site-wide constants that don't vary per route
  * (og:type, og:image, twitter:card, etc.) stay static in index.html.
  */
 export const buildPageHead = ({ title, description, path = '/' }: PageHead) => {
@@ -22,6 +22,7 @@ export const buildPageHead = ({ title, description, path = '/' }: PageHead) => {
       { content: description, name: 'description' },
       { content: title, property: 'og:title' },
       { content: description, property: 'og:description' },
+      { content: url, property: 'og:url' },
       { content: title, name: 'twitter:title' },
       { content: description, name: 'twitter:description' },
     ],
