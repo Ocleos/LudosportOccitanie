@@ -83,6 +83,22 @@ const isSameOrigin = (request: Request): boolean => {
   return false;
 };
 
+// TRIAL_COURSE_RECIPIENTS is positional: [0] is the academy address (always notified), [1] is the Montpellier
+// instructor, [2] is the Nîmes instructor. Only the instructor matching the submitted course is added alongside
+// the academy address, so each instructor only gets notified about their own trial-course requests.
+const getRecipients = (course: string, recipients: string[]): string[] => {
+  const [academy, montpellierInstructor, nimesInstructor] = recipients;
+  if (/^Nîmes\b/i.test(course)) {
+    return [academy, nimesInstructor];
+  }
+  if (/^Montpellier\b/i.test(course)) {
+    return [academy, montpellierInstructor];
+  }
+  // Unrecognized course label (e.g. a future option not yet handled here) — fail open to every recipient rather
+  // than silently dropping the notification.
+  return recipients;
+};
+
 const buildEmailHtml = (fields: {
   firstName: string;
   lastName: string;
@@ -125,7 +141,7 @@ export default async function handler(request: Request): Promise<Response> {
     .split(',')
     .map((recipient) => recipient.trim())
     .filter(Boolean);
-  if (!(apiKey && from && recipients?.length)) {
+  if (!(apiKey && from && recipients?.length === 3)) {
     return jsonResponse({ error: 'Server misconfigured' }, 500);
   }
 
@@ -177,7 +193,7 @@ export default async function handler(request: Request): Promise<Response> {
         html: buildEmailHtml({ age, course, email, firstName, lastName, telephone }),
         reply_to: email,
         subject: `Cours d'essai - ${firstName} ${lastName}`,
-        to: recipients,
+        to: getRecipients(course, recipients),
       }),
       headers: {
         Authorization: `Bearer ${apiKey}`,

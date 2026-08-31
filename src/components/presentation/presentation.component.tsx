@@ -26,9 +26,9 @@ const Presentation = () => {
           </p>
 
           <p>
-            Le Ludosport est un sport de combat moderne qui utilise le sabre laser comme arme sportive. Ce n'est pas une
-            simple chorégraphie ou un jeu de rôle, mais un véritable sport d'opposition avec ses propres techniques,
-            règles et système de progression. <br />
+            Le Ludosport est un sport de combat moderne qui utilise le sabre laser comme arme sportive. Ce n'est ni une
+            chorégraphie, ni un jeu de rôle, mais un véritable sport d'opposition avec ses propres techniques, règles et
+            système de progression. <br />
             <br />
             Développé en Italie depuis 2006, le Ludosport combine des éléments d'escrime, d'arts martiaux et de tactique
             sportive pour créer une expérience de combat unique et complète.

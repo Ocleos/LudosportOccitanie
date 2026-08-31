@@ -79,7 +79,10 @@ Commits via commitlint (`@commitlint/config-conventional`).
   [api/trial-course.ts](api/trial-course.ts), a Vercel Edge Function that sends the notification email via the
   [Resend](https://resend.com) API. The Resend API key/sender/recipients live in server-only env vars
   (`RESEND_API_KEY`, `RESEND_FROM`, `TRIAL_COURSE_RECIPIENTS` — comma-separated, see `.env.local`) — deliberately
-  **not** `VITE_`-prefixed, since `VITE_*` vars are inlined in plain text into the shipped client bundle. The client
+  **not** `VITE_`-prefixed, since `VITE_*` vars are inlined in plain text into the shipped client bundle.
+  `TRIAL_COURSE_RECIPIENTS` is positional (exactly 3 addresses): `[0]` is the academy address, always notified;
+  `[1]`/`[2]` are the Montpellier/Nîmes instructor addresses, one of which is added depending on which course the
+  submitted form's `course` field names (`getRecipients` in `api/trial-course.ts`). The client
   sends the honeypot (`website`) field and the time-on-page timestamp (`openedAt`) along with the form data, and the
   Edge Function re-checks both server-side (plus required-field/email/age validation and a same-origin check) before
   calling Resend — this closes the direct-`curl`-to-the-endpoint bypass a client-only check can't prevent. Follow
