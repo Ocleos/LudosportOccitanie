@@ -15,9 +15,9 @@ const PrinciplesInfo = () => {
           </p>
 
           <p>
-            Le Service est la volonté que montre chaque élève à aider ses compagnons sur la voie de l’amélioration
-            technique, en les encourageant activement et à tout moment à atteindre leurs propres limites pour mieux les
-            dépasser.
+            Il contribue au bien-être de la communauté sportive et de ses pratiquants, en plaçant le fair-play au-dessus
+            des intérêts personnels ; c’est la volonté de chaque étudiant de soutenir ses pairs dans leur progression
+            technique, en encourageant constamment la recherche et le dépassement de ses propres limites.
           </p>
         </Card>
 
@@ -27,8 +27,9 @@ const PrinciplesInfo = () => {
           </p>
 
           <p>
-            Le Soin, l’Attention, se manifeste dans le contrôle pratique des techniques et l’attention générale apportée
-            à la sécurité de tous.
+            Consiste à protéger la santé, la sécurité et la dignité de chaque personne ; prévenir les blessures et gérer
+            les risques de manière responsable ; exprimé à travers le contrôle technique et l'attention à sa propre
+            sécurité et à celle des autres.
           </p>
         </Card>
 
@@ -38,10 +39,9 @@ const PrinciplesInfo = () => {
           </p>
 
           <p>
-            Le Respect naît de la conscience de soi, de ses propres limites et de ses points forts. Il mène à des
-            relations saines avec autrui, en ne sous-estimant jamais un autre élève, quel que soit son niveau ou son
-            expérience. Chaque combat devient ainsi une opportunité de grandir, tant sur le plan personnel que
-            collectif.
+            Il s'agit d'observer les règles, les décisions des instances compétentes, les adversaires, les arbitres,
+            l'environnement et la communauté ; cela vient de la conscience de soi et mène à des relations correctes,
+            sans jamais sous-estimer personne.
           </p>
         </Card>
       </div>

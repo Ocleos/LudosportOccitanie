@@ -10,64 +10,39 @@ import F7 from '../../assets/icons/f7.svg';
 import Fy from '../../assets/icons/fy.svg';
 import Long from '../../assets/icons/long.svg';
 import Staff from '../../assets/icons/staff.svg';
+import PathHorizontal from '../../assets/path/PathHorizontal.webp';
+import PathVertical from '../../assets/path/PathVertical.webp';
 import Weapons from '../../assets/photos/3weapons.webp';
 import Card from '../ui/card.component';
 import LabelIcon from '../ui/labelIcon.component';
-import MaskIcon from '../ui/maskIcon.component';
 import Title from '../ui/title.component';
 
 const forms = [
-  { icon: F1, label: 'Forme I : équilibrée et sûre' },
-  { icon: F2, label: 'Forme II : rapide et explosive' },
+  { icon: F1, label: 'Forme I : stable et équilibrée' },
+  { icon: F2, label: 'Forme II : offensive et explosive' },
+  { icon: Fy, label: 'Cours Y : préparatoire' },
   { icon: F3, label: 'Forme III : fluide et trompeuse' },
-  { icon: F4, label: 'Forme IV : acrobatique et imprévisible' },
-  { icon: F5, label: 'Forme V : rapide et puissante' },
-  { icon: F6, label: 'Forme VI : sophistiquée et insidieuse' },
-  { icon: F7, label: 'Forme VII : impétueuse et dominante' },
+  { icon: F4, label: 'Forme IV : changeante et imprévisible' },
+  { icon: F5, label: 'Forme V : menaçante et puissante' },
+  { icon: F6, label: 'Forme VI : sophistiquée' },
+  { icon: F7, label: 'Forme VII : agressive' },
 ];
 
 const weapons = [
   {
-    description: "L'arme de base : maniable à une ou deux mains, elle offre vitesse, allonge et précision",
+    description: 'Le standard : une lame longue et une utilisation à une ou deux mains',
     icon: Long,
     label: 'Sabre Long',
   },
   {
-    description:
-      'Deux sabres courts pour un style vif et imprévisible, cette arme exigeante offre une dynamique de combat spectaculaire à base de frappes multiples et défenses complexes',
+    description: 'Deux lames courtes et un sabre dans chaque main',
     icon: Dual,
     label: 'Dagues',
   },
   {
-    description:
-      "Ce sabre à double lame offre une large palette de mouvements pour attaquer et défendre simultanément afin de prendre le contrôle de l'arène",
+    description: 'Un long manche avec des lames intermédiaires de chaque côté',
     icon: Staff,
     label: 'Bâton',
-  },
-];
-
-const pathColumns = [
-  { colorClass: 'bg-taupe-500/75', icon: F1, label: 'Forme I', merged: false, weaponIndices: [0] },
-  { colorClass: 'bg-taupe-500/75', icon: F2, label: 'Forme II', merged: false, weaponIndices: [0] },
-  { colorClass: 'bg-taupe-500/75', icon: Fy, label: 'Cours Y', merged: true, weaponIndices: [0, 1, 2] },
-  { colorClass: 'bg-primary/75', icon: F3, label: 'Forme III', merged: false, weaponIndices: [0, 1, 2] },
-  { colorClass: 'bg-primary/75', icon: F4, label: 'Forme IV', merged: false, weaponIndices: [0, 1, 2] },
-  { colorClass: 'bg-primary/75', icon: F5, label: 'Forme V', merged: false, weaponIndices: [0, 1, 2] },
-  {
-    colorClass: 'bg-indigo-500/75',
-    icon: F6,
-    label: 'Forme VI',
-    merged: true,
-    subtitle: '3 armes',
-    weaponIndices: [0, 1, 2],
-  },
-  {
-    colorClass: 'bg-indigo-500/75',
-    icon: F7,
-    label: 'Forme VII',
-    merged: true,
-    subtitle: '3 armes',
-    weaponIndices: [0, 1, 2],
   },
 ];
 
@@ -80,209 +55,95 @@ const PathInfo = () => {
         <img alt='3 armes différentes' className='h-full w-full object-cover' loading='lazy' src={Weapons} />
       </div>
 
-      <div className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2'>
-        <Card>
-          <p className='font-bold text-xl'>
-            <LabelIcon icon={LayersIcon} label='Sept formes de combat' />
-          </p>
+      <Card className='w-full'>
+        <p className='font-bold text-xl'>
+          <LabelIcon icon={LayersIcon} label='Les formes de combat' />
+        </p>
 
-          <p>
-            Le Ludosport se divise en sept formes distinctes, chacune avec ses propres techniques, styles de combat et
-            philosophie qui, mélangées, permettront à chaque athlète de créer son style de combat unique :
-          </p>
+        <p>
+          Cycle Primaire, dans lequel les élèves apprennent la Forme 1 et la Forme 2, axée respectivement sur les
+          techniques du sabre long à deux mains et à une main. Par la suite, ils sont initiés à l'utilisation des Sabres
+          Doubles et du Bâton-Sabre dans le Cours Y. Pour accéder au Cycle Avancé, il est nécessaire de réussir l'examen
+          de Rang Accademico.
+        </p>
 
-          <ul className='flex flex-col gap-2'>
-            {forms.map((form) => (
+        <ul className='flex flex-col gap-2'>
+          {forms
+            .filter((_, index) => index < 3)
+            .map((form) => (
               <li key={form.label}>
                 <LabelIcon icon={form.icon} label={form.label} />
               </li>
             ))}
-          </ul>
-        </Card>
+        </ul>
 
-        <Card>
-          <p className='font-bold text-xl'>
-            <LabelIcon icon={SwordsIcon} label='3 armes' />
-          </p>
+        <p>
+          Cycle Avancé, dans lequel les étudiants peuvent choisir l'arme qu'ils souhaitent étudier, en progressant avec
+          les Formes 3, 4 et 5, où ils approfondissent respectivement leur compréhension de la Réaction, du Mouvement et
+          de l'Action en entraînant chaque arme contre une arme du même type. Pour accéder au Cycle du Maître, il est
+          nécessaire de passer l'examen du rang de Cavaliere.
+        </p>
 
-          <p>Le Ludosport se pratique avec trois types d'armes, chacune offrant un style de combat unique :</p>
-
-          <ul className='flex flex-col gap-3'>
-            {weapons.map((weapon) => (
-              <li key={weapon.label}>
-                <div className='gap-2'>
-                  <LabelIcon icon={weapon.icon} label={weapon.label} />
-                  <p className='pl-8'>{weapon.description}</p>
-                </div>
+        <ul className='flex flex-col gap-2'>
+          {forms
+            .filter((_, index) => index >= 3 && index < 6)
+            .map((form) => (
+              <li key={form.label}>
+                <LabelIcon icon={form.icon} label={form.label} />
               </li>
             ))}
-          </ul>
-        </Card>
-      </div>
+        </ul>
+
+        <p>
+          Cycle de Master, dans lequel les étudiants perfectionnent, avec les Formes 6 et 7, la maîtrise des trois armes
+          et apprennent à appliquer leurs compétences même lorsqu'ils affrontent des adversaires qui utilisent
+          différentes armes. Le cycle se termine par le passage de l’examen de rang Maestro.
+        </p>
+
+        <ul className='flex flex-col gap-2'>
+          {forms
+            .filter((_, index) => index >= 6)
+            .map((form) => (
+              <li key={form.label}>
+                <LabelIcon icon={form.icon} label={form.label} />
+              </li>
+            ))}
+        </ul>
+      </Card>
 
       <Card className='w-full'>
         <p className='font-bold text-xl'>
-          <LabelIcon icon={RouteIcon} label="Le parcours d'apprentissage" />
+          <LabelIcon icon={SwordsIcon} label='3 types de sabres laser' />
         </p>
 
-        {/* Portrait layout (forms as rows, weapons as columns) — fits mobile widths without scrolling */}
-        <div className='overflow-x-auto lg:hidden'>
-          <table className='w-full border-collapse text-center'>
-            <caption className='sr-only'>
-              Les formes de combat et les armes utilisées pour chacune, regroupées par étape d'apprentissage
-            </caption>
+        <p>Les athlètes auront accès à terme à 3 types de sabres laser :</p>
 
-            <thead>
-              <tr>
-                <td aria-hidden='true' className='border border-gray-500 p-0' />
-                {weapons.map((weapon) => (
-                  <th className='border border-gray-500 p-2' key={weapon.label} scope='col'>
-                    <MaskIcon className='mx-auto bg-white' icon={weapon.icon} />
-                    <span className='sr-only'>{weapon.label}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
+        <ul className='flex flex-col gap-3'>
+          {weapons.map((weapon) => (
+            <li key={weapon.label}>
+              <div className='gap-2'>
+                <LabelIcon icon={weapon.icon} label={weapon.label} />
+                <p className='pl-8'>{weapon.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Card>
 
-            <tbody>
-              {pathColumns.map((column) => (
-                <tr key={column.label}>
-                  <th className='border border-gray-500 p-2' scope='row'>
-                    <MaskIcon className='mx-auto bg-white' icon={column.icon} />
-                    <span className='sr-only'>{column.label}</span>
-                  </th>
+      <Card className='w-full'>
+        <p className='font-bold text-xl'>
+          <LabelIcon icon={RouteIcon} label='Parcours' />
+        </p>
 
-                  {weapons.map((weapon, weaponIndex) => {
-                    const usable = column.weaponIndices.includes(weaponIndex);
-
-                    if (column.merged) {
-                      if (weaponIndex !== 0) {
-                        return null;
-                      }
-
-                      return (
-                        <td
-                          className={`border border-gray-500 p-2 ${column.colorClass}`}
-                          colSpan={column.weaponIndices.length}
-                          key={weapon.label}>
-                          <span className='block font-bold'>{column.label}</span>
-                          {column.subtitle && <span className='block text-xs opacity-80'>{column.subtitle}</span>}
-                        </td>
-                      );
-                    }
-
-                    if (!usable) {
-                      return (
-                        <td className='border border-gray-500 p-2' key={weapon.label}>
-                          <span className='sr-only'>
-                            {column.label} : non pratiquée avec {weapon.label}
-                          </span>
-                        </td>
-                      );
-                    }
-
-                    return (
-                      <td className={`border border-gray-500 p-2 ${column.colorClass}`} key={weapon.label}>
-                        <span className='block font-bold'>{column.label}</span>
-                        {column.weaponIndices.length > 1 && (
-                          <span className='block text-xs opacity-80'>{weapon.label}</span>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Landscape layout (weapons as rows, forms as columns) — desktop only, enough width to stay readable */}
-        <div className='hidden overflow-x-auto lg:block'>
-          <table className='w-full border-collapse text-center'>
-            <caption className='sr-only'>
-              Les formes de combat et les armes utilisées pour chacune, regroupées par étape d'apprentissage
-            </caption>
-
-            <thead>
-              <tr>
-                <td aria-hidden='true' className='border border-gray-500 p-0' />
-                {pathColumns.map((column) => (
-                  <th className='border border-gray-500 p-2' key={column.label} scope='col'>
-                    <MaskIcon className='mx-auto bg-white' icon={column.icon} />
-                    <span className='sr-only'>{column.label}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-
-            <tbody>
-              {weapons.map((weapon, weaponIndex) => (
-                <tr key={weapon.label}>
-                  <th className='border border-gray-500 p-2' scope='row'>
-                    <MaskIcon className='mx-auto bg-white' icon={weapon.icon} />
-                    <span className='sr-only'>{weapon.label}</span>
-                  </th>
-
-                  {pathColumns.map((column) => {
-                    const usable = column.weaponIndices.includes(weaponIndex);
-
-                    if (column.merged) {
-                      if (weaponIndex !== 0) {
-                        return null;
-                      }
-
-                      return (
-                        <td
-                          className={`border border-gray-500 p-2 ${column.colorClass}`}
-                          key={column.label}
-                          rowSpan={column.weaponIndices.length}>
-                          <span className='block font-bold'>{column.label}</span>
-                          {column.subtitle && <span className='block text-xs opacity-80'>{column.subtitle}</span>}
-                        </td>
-                      );
-                    }
-
-                    if (!usable) {
-                      return (
-                        <td className='border border-gray-500 p-2' key={column.label}>
-                          <span className='sr-only'>
-                            {column.label} : non pratiquée avec {weapon.label}
-                          </span>
-                        </td>
-                      );
-                    }
-
-                    return (
-                      <td className={`border border-gray-500 p-2 ${column.colorClass}`} key={column.label}>
-                        <span className='block font-bold'>{column.label}</span>
-                        {column.weaponIndices.length > 1 && (
-                          <span className='block text-xs opacity-80'>{weapon.label}</span>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className='flex flex-col items-center justify-center gap-4 lg:flex-row'>
-          <div className='flex flex-row gap-2'>
-            <div className='size-6 rounded-lg border border-gray-500 bg-taupe-500/75'>&nbsp;</div>
-            Formes de base
-          </div>
-
-          <div className='flex flex-row gap-2'>
-            <div className='size-6 rounded-lg border border-gray-500 bg-primary/75'>&nbsp;</div>
-            Formes Avancées
-          </div>
-
-          <div className='flex flex-row gap-2'>
-            <div className='size-6 rounded-lg border border-gray-500 bg-indigo-500/75'>&nbsp;</div>
-            Formes de Maîtres
-          </div>
-        </div>
+        <picture>
+          <source media='(min-width: 64rem)' srcSet={PathHorizontal} />
+          <img
+            alt="Schéma du parcours d'apprentissage LudoSport. Le Cycle Primaire (en gris) regroupe les Formes I et II ainsi que le Cours Y, pratiqués au sabre long. Le Cycle Avancé (en orange) couvre les Formes III, IV et V, où l'étudiant choisit parmi les trois armes. Le Cycle de Master (en violet) réunit les Formes VI et VII et la maîtrise des trois armes face à des adversaires armés différemment."
+            className='mx-auto w-full max-w-md lg:max-w-full'
+            loading='lazy'
+            src={PathVertical}
+          />
+        </picture>
       </Card>
     </>
   );

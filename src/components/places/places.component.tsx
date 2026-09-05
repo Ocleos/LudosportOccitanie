@@ -2,7 +2,6 @@ import { COURSES } from 'src/data/courses';
 import { PLACES } from 'src/data/places';
 import Title from '../ui/title.component';
 import CourseCard from './courseCard.component';
-import CourseInfo from './courseInfo.component';
 import PlaceCard from './placeCard.component';
 
 const montpellierCourses = COURSES.filter((course) => course.school === 'montpellier');
@@ -13,10 +12,6 @@ const Places = () => {
   return (
     <section aria-labelledby='places-title'>
       <div className='flex flex-col gap-8'>
-        <Title id='courses-title' level='h1' text='Déroulement des cours' />
-
-        <CourseInfo />
-
         <Title id='montpellier-title' text='Montpellier' />
 
         <div className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2'>
